@@ -14,6 +14,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=07384b3aa2e0d39afca0d6c40286f545"
 DEPENDS = "freetype libpng jpeg zlib tiff"
 
 SRC_URI = "git://github.com/libgd/libgd.git;branch=GD-2.2 \
+           file://disable-jpeg_read-test.patch \
           "
 
 SRCREV = "de09874b15a4c88772db35ced842330f5de23e76"
