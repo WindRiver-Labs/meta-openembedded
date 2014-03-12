@@ -103,7 +103,8 @@ do_install_append() {
     rmdir --ignore-fail-on-non-empty ${D}${libexecdir}
 }
 
-PACKAGES += "ntpdate sntp ${PN}-tickadj ${PN}-utils"
+PACKAGES =+ "${PN}-tickadj"
+PACKAGES += "ntpdate sntp ${PN}-utils"
 # NOTE: you don't need ntpdate, use "ntpd -q -g -x"
 
 # ntp originally includes tickadj. It's split off for inclusion in small firmware images on platforms
