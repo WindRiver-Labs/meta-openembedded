@@ -30,3 +30,6 @@ PACKAGECONFIG[selinux] = "--enable-selinux,--disable-selinux,libselinux,libselin
 do_configure_prepend () {
     ( cd ${S}; ./autogen.sh )
 }
+
+# limit to x86 x86_64 and ppc arch only
+COMPATIBLE_HOST = "(i.86|x86_64|powerpc).*-linux"
