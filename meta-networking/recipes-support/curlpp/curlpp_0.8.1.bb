@@ -20,6 +20,7 @@ do_install_append () {
 }
 
 PACKAGES =+ "libcurlpp libcurlpp-dev libcurlpp-staticdev"
+RPROVIDES_lib${BPN} = "${PN}"
 
 FILES_lib${BPN} = "${libdir}/lib*.so.*"
 
