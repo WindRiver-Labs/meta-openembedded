@@ -23,7 +23,7 @@ do_install() {
 }
 
 SYSTEMD_SERVICE_${PN} = "phoromatic-client.service phoromatic-server.service"
-RDEPENDS_${PN} += "bash python php-cli"
+RDEPENDS_${PN} += "bash python"
 
 FILES_${PN} += " \
     ${datadir}/phoronix-test-suite \
