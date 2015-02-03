@@ -28,6 +28,8 @@ DISABLE_STATIC = ""
 
 inherit autotools-brokensep pkgconfig update-rc.d systemd
 
+CLEANBROKEN = "1"
+
 INITSCRIPT_NAME = "monkey"
 INITSCRIPT_PARAMS = "defaults 70"
 
