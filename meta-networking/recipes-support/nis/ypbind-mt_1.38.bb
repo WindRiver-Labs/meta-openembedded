@@ -30,6 +30,7 @@ PROVIDES += "ypbind"
 SRC_URI = "http://www.linux-nis.org/download/ypbind-mt/${BP}.tar.bz2 \
            file://ypbind.init \
            file://ypbind.service \
+           file://nis.sh \
 "
 SRC_URI[md5sum] = "094088c0e282fa7f3b3dd6cc51d0a4e1"
 SRC_URI[sha256sum] = "1930ce19f6ccfe10400f3497b31867f71690d2bcd3f5b575199fa915559b7746"
@@ -50,6 +51,9 @@ do_install_append () {
 
     install -d ${D}${systemd_unitdir}/system
     install -m 0644 ${WORKDIR}/ypbind.service ${D}${systemd_unitdir}/system
+
+    install -d ${D}/${sysconfdir}/dhcp/dhclient.d
+    install -m 755 ${WORKDIR}/nis.sh ${D}/${sysconfdir}/dhcp/dhclient.d/
 }
 
 
