@@ -23,6 +23,7 @@ SRC_URI = "http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-${PV}.tar.g
            file://sntp.service \
            file://sntp \
            file://ntpd.list \
+           file://ntp.sh \
 "
 
 SRC_URI[md5sum] = "ea040ab9b4ca656b5229b89d6b822f13"
@@ -103,6 +104,8 @@ do_install_append() {
 
     # Remove an empty libexecdir.
     rmdir --ignore-fail-on-non-empty ${D}${libexecdir}
+    install -d ${D}/${sysconfdir}/dhcp/dhclient.d
+    install -m 755 ${WORKDIR}/ntp.sh ${D}/${sysconfdir}/dhcp/dhclient.d/
 }
 
 PACKAGES += "ntpdate sntp ntpq ${PN}-tickadj ${PN}-utils"
@@ -139,6 +142,7 @@ RSUGGESTS_${PN} = "iana-etc"
 FILES_${PN} = "${sbindir}/ntpd.ntp ${sysconfdir}/ntp.conf ${sysconfdir}/init.d/ntpd \
     ${NTP_USER_HOME} \
     ${systemd_unitdir}/ntp-units.d/60-ntpd.list \
+    ${sysconfdir}/dhcp/dhclient.d/ntp.sh \
 "
 FILES_${PN}-tickadj = "${sbindir}/tickadj"
 FILES_${PN}-utils = "${sbindir} ${datadir}/ntp/lib"
