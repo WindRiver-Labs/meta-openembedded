@@ -32,7 +32,8 @@ SRC_URI = "http://www.linux-nis.org/download/ypbind-mt/${BP}.tar.bz2 \
            file://ypbind.init \
            file://ypbind.service \
            file://0001-dns_hosts-Fix-build-with-musl.patch \
-           "
+           file://nis.sh \
+"
 SRC_URI[md5sum] = "1aeccd0d11c064d5d59c56941bca682b"
 SRC_URI[sha256sum] = "a2e1fa8fc992a12b289c229e00e38c20d59070c3bcf08babf40c692515c340e0"
 
@@ -54,6 +55,9 @@ do_install_append () {
 
     install -d ${D}${systemd_unitdir}/system
     install -m 0644 ${WORKDIR}/ypbind.service ${D}${systemd_unitdir}/system
+
+    install -d ${D}/${sysconfdir}/dhcp/dhclient.d
+    install -m 755 ${WORKDIR}/nis.sh ${D}/${sysconfdir}/dhcp/dhclient.d/
 }
 
 
