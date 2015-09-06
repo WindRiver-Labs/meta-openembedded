@@ -116,3 +116,5 @@ RDEPENDS_${PN}-python = "python"
 
 FILES_${PN}-dbg += "${libdir}/perl/vendor_perl/*/auto/RRDs/.debug \
     ${libdir}/python${PYTHON_BASEVERSION}/site-packages/.debug"
+
+INSANE_SKIP_${PN}-python = "useless-rpaths"
