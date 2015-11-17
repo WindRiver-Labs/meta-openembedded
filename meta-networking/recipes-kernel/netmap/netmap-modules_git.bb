@@ -9,6 +9,11 @@ CLEANBROKEN = "1"
 
 export INSTALL_MOD_DIR="kernel/netmap-modules"
 
+# When building on a multilib capable BSP, it's possible for the
+# kernel bit size to be different than the userspace. Avoid the QA test
+# when building modules
+INSANE_SKIP_kernel-module-netmap = "arch"
+
 EXTRA_OECONF = "--kernel-dir=${STAGING_KERNEL_BUILDDIR} \
                 --kernel-sources=${STAGING_KERNEL_DIR} \
                 --install-mod-path=${D} \
