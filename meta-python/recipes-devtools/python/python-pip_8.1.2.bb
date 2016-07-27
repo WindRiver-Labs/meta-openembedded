@@ -9,3 +9,5 @@ inherit pypi setuptools
 
 # Since PIP is like CPAN for PERL we need to drag in all python modules to ensure everything works
 RDEPENDS_${PN} = "python-modules python-distribute"
+
+BBCLASSEXTEND = "nativesdk"
