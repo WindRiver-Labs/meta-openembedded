@@ -18,6 +18,7 @@ DEPENDS = "attr tokyocabinet"
 SRC_URI = "https://cfengine-package-repos.s3.amazonaws.com/tarballs/${BP}.tar.gz \
            file://change-hard-coded-lib-path.patch \
            file://set-path-of-default-config-file.patch \
+           file://cfengine_fix_segfault_in_rlist_test.patch \
 "
 
 SRC_URI[md5sum] = "63da39655cfca30ca885fcc4a1bf8aa4"
