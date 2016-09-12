@@ -5,11 +5,10 @@ Upstream-Status: Inappropriate [configuration]
 Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 ---
  include/buildmacros |  2 +-
- include/install-sh  | 95 ++++++++---------------------------------------------
- 2 files changed, 14 insertions(+), 83 deletions(-)
+ include/install-sh  | 88 +++++++++++++---------------------------------------------------------------------------
+ 2 files changed, 14 insertions(+), 76 deletions(-)
 
 diff --git a/include/buildmacros b/include/buildmacros
-index 7a01880..0840d55 100644
 --- a/include/buildmacros
 +++ b/include/buildmacros
 @@ -30,7 +30,7 @@ OBJECTS = $(ASFILES:.s=.o) \
@@ -22,7 +21,6 @@ index 7a01880..0840d55 100644
  IMAGES_DIR = $(TOPDIR)/all-images
  DIST_DIR = $(TOPDIR)/dist
 diff --git a/include/install-sh b/include/install-sh
-index c952a71..b9d66f7 100755
 --- a/include/install-sh
 +++ b/include/install-sh
 @@ -24,11 +24,11 @@
@@ -41,7 +39,7 @@ index c952a71..b9d66f7 100755
      echo ""
      echo "The \$DIST_MANIFEST and \$DIST_ROOT environment variables affect the"
      echo "behaviour of this command - see comments in the script."
-@@ -38,32 +38,6 @@ _usage() {
+@@ -38,35 +38,10 @@ _usage() {
      exit 1
  }
  
@@ -63,7 +61,7 @@ index c952a71..b9d66f7 100755
 -		    fi
 -		fi
 -	       _st=0
--	    fi     
+-	    fi
 -	fi
 -    fi
 -
@@ -72,9 +70,13 @@ index c952a71..b9d66f7 100755
 -
 -
  _manifest ()
- { 
+ {
      echo $* | sed -e 's/\/\//\//g' >>${DIST_MANIFEST:-/dev/null}
-@@ -77,9 +51,6 @@ Sflag=false
++    $MANIFEST d $DIRMODE ${dir#$DIST_ROOT}
+ }
+ 
+ prog=`basename $0`
+@@ -77,9 +52,6 @@ Sflag=false
  Tflag=false
  DIRMODE=755
  FILEMODE=644
@@ -84,7 +86,7 @@ index c952a71..b9d66f7 100755
  
  # default is to install and don't append manifest
  INSTALL=true
-@@ -94,24 +65,16 @@ MANIFEST=:
+@@ -94,24 +66,16 @@ MANIFEST=:
  
  if $INSTALL
  then
@@ -112,27 +114,19 @@ index c952a71..b9d66f7 100755
     m)
  	DIRMODE=`expr $OPTARG`
  	FILEMODE=$DIRMODE
-@@ -146,18 +109,7 @@ then
-     # first usage
-     #
-     $MKDIR -p $dir 
--    status=$?
--    if [ $status -eq 0 ]
--    then
--	$CHMOD $DIRMODE $dir
--	status=$?
--    fi
+@@ -152,11 +116,6 @@ then
+ 	$CHMOD $DIRMODE $dir
+ 	status=$?
+     fi
 -    if [ $status -eq 0 ]
 -    then
 -	$CHOWN $OWNER $GROUP $dir
 -	status=$?
 -    fi
--    $MANIFEST d $DIRMODE $OWNER $GROUP ${dir#$DIST_ROOT}
-+    $MANIFEST d $DIRMODE ${dir#$DIST_ROOT}
+     $MANIFEST d $DIRMODE $OWNER $GROUP ${dir#$DIST_ROOT}
  elif $Sflag
  then
-     #
-@@ -203,7 +155,7 @@ then
+@@ -203,7 +162,7 @@ then
  			install_name=$target/$solib
  			$CP $solib $install_name
  			status=$?
@@ -141,7 +135,7 @@ index c952a71..b9d66f7 100755
  			break
  		fi
  	done
-@@ -254,7 +206,7 @@ then
+@@ -254,7 +213,7 @@ then
  	install_name=$target/$old_library
  	$CP $old_library $install_name
  	status=$?
@@ -150,7 +144,7 @@ index c952a71..b9d66f7 100755
  	;;
      *)
  	echo "$prog: -T $lt_install invalid"
-@@ -267,7 +219,6 @@ then
+@@ -267,7 +226,6 @@ then
  	if [ $status -eq 0 ]
  	then
  		$CHMOD $FILEMODE $install_name
@@ -158,8 +152,8 @@ index c952a71..b9d66f7 100755
  	fi
  	;;
      esac
-@@ -292,23 +243,10 @@ else
- 	then 
+@@ -292,23 +250,10 @@ else
+ 	then
  	    if [ -f $dir/$f ]
  	    then
 -		$CHMOD $FILEMODE $dir/$f
@@ -184,7 +178,7 @@ index c952a71..b9d66f7 100755
  	    fi
  	fi
      else
-@@ -334,14 +272,7 @@ else
+@@ -334,14 +279,7 @@ else
  	    status=$?
  	    if [ $status -eq 0 ]
  	    then
@@ -200,6 +194,3 @@ index c952a71..b9d66f7 100755
  	    fi
  	    [ $status -ne 0 ] && break
  	done
--- 
-1.8.1.2
-

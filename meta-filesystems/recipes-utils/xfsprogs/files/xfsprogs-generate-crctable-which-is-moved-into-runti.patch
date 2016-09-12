@@ -13,24 +13,22 @@ Upstream-Status: Pending
 
 Signed-off-by: Jianchuan Wang <jianchuan.wang@windriver.com>
 ---
- libxfs/Makefile | 23 ++----------------
- libxfs/crc32.c  | 75 +++++++++++++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 75 insertions(+), 23 deletions(-)
+ libxfs/Makefile | 22 +---------------------
+ libxfs/crc32.c  | 75 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 74 insertions(+), 23 deletions(-)
 
 diff --git a/libxfs/Makefile b/libxfs/Makefile
-index ae15a5d..7670159 100644
 --- a/libxfs/Makefile
 +++ b/libxfs/Makefile
-@@ -10,7 +10,7 @@ LT_CURRENT = 0
- LT_REVISION = 0
- LT_AGE = 0
+@@ -43,7 +43,6 @@ HFILES = \
+ 	libxfs_api_defs.h \
+ 	init.h \
+ 	crc32defs.h \
+-	crc32table.h \
+ 	libxfs_priv.h \
+ 	xfs_dir2_priv.h
  
--HFILES = xfs.h init.h xfs_dir2_priv.h crc32defs.h crc32table.h
-+HFILES = xfs.h init.h xfs_dir2_priv.h crc32defs.h
- CFILES = cache.c \
- 	crc32.c \
- 	init.c kmem.c logitem.c radix-tree.c rdwr.c trans.c util.c \
-@@ -43,7 +43,6 @@ CFILES = cache.c \
+@@ -87,7 +86,6 @@ CFILES = cache.c \
  CFILES += $(PKG_PLATFORM).c
  PCFILES = darwin.c freebsd.c irix.c linux.c
  LSRCFILES = $(shell echo $(PCFILES) | sed -e "s/$(PKG_PLATFORM).c//g")
@@ -38,7 +36,7 @@ index ae15a5d..7670159 100644
  
  #
  # Tracing flags:
-@@ -61,25 +60,7 @@ LTLIBS = $(LIBPTHREAD) $(LIBRT)
+@@ -105,25 +103,7 @@ LTLIBS = $(LIBPTHREAD) $(LIBRT)
  # don't try linking xfs_repair with a debug libxfs.
  DEBUG = -DNDEBUG
  
@@ -48,7 +46,7 @@ index ae15a5d..7670159 100644
 -
 -crc32table.h: gen_crc32table.c
 -	@echo "    [CC]     gen_crc32table"
--	$(Q) $(CC) $(CFLAGS) -o gen_crc32table $<
+-	$(Q) $(BUILD_CC) $(CFLAGS) -o gen_crc32table $<
 -	@echo "    [GENERATE] $@"
 -	$(Q) ./gen_crc32table > crc32table.h
 -
@@ -59,17 +57,16 @@ index ae15a5d..7670159 100644
 -# disk.
 -crc32selftest: gen_crc32table.c crc32table.h crc32.c
 -	@echo "    [TEST]    CRC32"
--	$(Q) $(CC) $(CFLAGS) -D CRC32_SELFTEST=1 crc32.c -o $@
+-	$(Q) $(BUILD_CC) $(CFLAGS) -D CRC32_SELFTEST=1 crc32.c -o $@
 -	$(Q) ./$@
 +default: ltdepend $(LTLIBRARY)
  
+ # set up include/xfs header directory
  include $(BUILDRULES)
- 
 diff --git a/libxfs/crc32.c b/libxfs/crc32.c
-index 0f847d2..be5fbc3 100644
 --- a/libxfs/crc32.c
 +++ b/libxfs/crc32.c
-@@ -55,8 +55,6 @@ typedef __u32	u64;
+@@ -57,8 +57,6 @@ typedef __u32	u64;
  # define tobe(x) (x)
  #endif
  
@@ -78,7 +75,7 @@ index 0f847d2..be5fbc3 100644
  #if CRC_LE_BITS > 8 || CRC_BE_BITS > 8
  
  /* implements slicing-by-4 or slicing-by-8 algorithm */
-@@ -183,13 +181,86 @@ u32 __pure crc32c_le(u32 crc, unsigned char const *p, size_t len)
+@@ -185,13 +183,86 @@ u32 __pure crc32c_le(u32 crc, unsigned char const *p, size_t len)
  	return crc32_le_generic(crc, p, len, NULL, CRC32C_POLY_LE);
  }
  #else
@@ -165,6 +162,3 @@ index 0f847d2..be5fbc3 100644
  	return crc32_le_generic(crc, p, len,
  			(const u32 (*)[256])crc32ctable_le, CRC32C_POLY_LE);
  }
--- 
-1.9.1
-
