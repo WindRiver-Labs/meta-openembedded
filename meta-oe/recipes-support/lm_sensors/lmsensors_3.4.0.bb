@@ -11,6 +11,7 @@ SRC_URI = "http://dl.lm-sensors.org/lm-sensors/releases/lm_sensors-${PV}.tar.bz2
            file://fancontrol.init \
            file://sensord.init \
            file://0001-lmsensors-sensors-detect-print-a-special-message-whe.patch \
+           file://0001-lm-sensors-fix-sensors-detect-can-t-read-the-cpu-inf.patch \
 "
 SRC_URI[md5sum] = "c03675ae9d43d60322110c679416901a"
 SRC_URI[sha256sum] = "e0579016081a262dd23eafe1d22b41ebde78921e73a1dcef71e05e424340061f"
