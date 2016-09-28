@@ -1,0 +1,14 @@
+[Unit]
+Description=Webmin Admin Tool
+Requires=local-fs.target
+After=basic.target
+Conflicts=shutdown.target
+
+[Service]
+Type=oneshot
+ExecStart=@LIBEXECDIR@/webmin/miniserv.pl @SYSCONFDIR@/webmin/miniserv.conf
+RemainAfterExit=yes
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
