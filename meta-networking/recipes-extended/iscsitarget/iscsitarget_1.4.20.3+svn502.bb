@@ -16,12 +16,15 @@ SRC_URI = "http://ftp.heanet.ie/mirrors/ubuntu/pool/universe/i/${BPN}/${BPN}_${P
            file://build_with_updated_interfaces_of_linux_v4.8_and_above.patch \
            file://fix-call-trace-of-ahash-API-calling.patch \
            file://0001-kernel-event-netlink_ack-now-requires-4-arguments.patch \
-           "
+           file://iscsitarget.service \
+"
 
 SRC_URI[md5sum] = "ef9bc823bbabd3c772208c00d5f2d089"
 SRC_URI[sha256sum] = "d3196ccb78a43266dce28587bfe30d8ab4db7566d7bce96057dfbb84100babb5"
 
-inherit module
+inherit module systemd
+
+SYSTEMD_SERVICE_${PN} = "iscsitarget.service"
 
 do_configure[noexec] = "1"
 
@@ -53,10 +56,20 @@ do_install() {
     mkdir -p ${D}${sysconfdir}/init.d
     install -m 0755 etc/initd/initd ${D}${sysconfdir}/init.d/iscsi-target
     install -m 0644 etc/initiators.deny ${D}${sysconfdir}/iet/initiators.deny
+
+    # DISTRO_FEATURES contain systemd
+    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+        install -d "${D}${systemd_unitdir}/system"
+        install -m 644 ${WORKDIR}/iscsitarget.service ${D}${systemd_unitdir}/system
+        sed -i -e 's,@SBINDIR@,${sbindir},g' ${D}${systemd_unitdir}/system/iscsitarget.service
+        sed -i -e 's,@BASE_SBINDIR@,${base_sbindir},g' ${D}${systemd_unitdir}/system/iscsitarget.service
+    fi
 }
 
 FILES_${PN} += "${sbindir} \
-                ${sysconfdir}"
+                ${sysconfdir} \
+                ${systemd_unitdir}/system \
+"
 
 RDEPENDS_${PN} = "kernel-module-iscsi-trgt"
 RRECOMMENDS_${PN} = "kernel-module-crc32c kernel-module-libcrc32c"

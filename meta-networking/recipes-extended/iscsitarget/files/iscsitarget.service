@@ -1,0 +1,13 @@
+[Unit]
+Description=iSCSI Enterprise Target
+Documentation=man:ietd(8)
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=forking
+ExecStartPre=@BASE_SBINDIR@/modprobe iscsi_trgt
+ExecStart=@SBINDIR@/ietd
+
+[Install]
+WantedBy=multi-user.target
