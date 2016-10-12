@@ -34,5 +34,3 @@ do_install () {
     oe_runmake install
     oe_runmake install-dev
 }
-
-PNBLACKLIST[xfsdump] ?= "Depends on broken xfsprogs"
