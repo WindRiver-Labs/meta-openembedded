@@ -7,6 +7,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://ares_init.c;beginline=1;endline=3;md5=53f5ecf4c22c37cf1ddd1ef8f8eccce0"
 
 SRC_URI = "http://c-ares.haxx.se/download/${BP}.tar.gz \
+           file://CVE-2016-5180.patch \
            file://0001-configure.ac-don-t-override-passed-cflags.patch \
 "
 SRC_URI[md5sum] = "d5c6d522cfc54bb6f215a0b7912d46be"
