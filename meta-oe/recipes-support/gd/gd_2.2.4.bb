@@ -15,6 +15,7 @@ DEPENDS = "freetype libpng jpeg zlib tiff"
 
 SRC_URI = "git://github.com/libgd/libgd.git;branch=GD-2.2 \
            file://disable-jpeg_read-test.patch \
+           file://0001-Fix-integer-overflow-in-gdImageWebpCtx.patch \
           "
 
 SRCREV = "de09874b15a4c88772db35ced842330f5de23e76"
