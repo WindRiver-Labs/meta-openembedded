@@ -1,0 +1,31 @@
+From 3de3d534c0b85f2d0378f699160e1a026a7317a7 Mon Sep 17 00:00:00 2001
+From: Jianchuan Wang <jianchuan.wang@windriver.com>
+Date: Wed, 26 Oct 2016 03:11:27 -0400
+Subject: [PATCH] netmap: Rename the _conut to _recount
+
+Rename the _count into _refcount since Adjusting the member of
+struct page in the kernel v4.8.
+
+Upstream-Status: Pending
+
+Signed-off-by: Jianchuan Wang <jianchuan.wang@windriver.com>
+---
+ LINUX/bsd_glue.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/LINUX/bsd_glue.h b/LINUX/bsd_glue.h
+index 9a116a0..8df6838 100644
+--- a/LINUX/bsd_glue.h
++++ b/LINUX/bsd_glue.h
+@@ -130,7 +130,7 @@ struct net_device_ops {
+ 	do {						  \
+ 		int i_;					  \
+ 		for (i_ = 1; i_ < (1 << (order)); i_++)	  \
+-			atomic_set(&(page)[i_]._count, 1);\
++			atomic_set(&(page)[i_]._refcount, 1);\
+ 	} while (0)
+ #endif /* HAVE_SPLIT_PAGE */
+ 
+-- 
+2.8.1
+

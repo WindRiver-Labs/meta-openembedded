@@ -5,6 +5,8 @@ do_configure[depends] += "virtual/kernel:do_shared_workdir"
 
 inherit module
 
+SRC_URI += "file://0001-netmap-Rename-the-_conut-to-_recount.patch"
+
 CLEANBROKEN = "1"
 
 export INSTALL_MOD_DIR="kernel/netmap-modules"
