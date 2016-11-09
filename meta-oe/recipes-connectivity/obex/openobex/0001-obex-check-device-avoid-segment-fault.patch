@@ -1,0 +1,29 @@
+Subject: obex-check-device: avoid segment fault
+
+The argument number needs to be no less than 3 instead of 2. Otherwise,
+when we use `obex-check-device xxx' on target, there would be segment
+fault error.
+
+Upstream-Status: Pending
+
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ udev/obex-check-device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/udev/obex-check-device.c b/udev/obex-check-device.c
+index 9eb4769..df9fc73 100644
+--- a/udev/obex-check-device.c
++++ b/udev/obex-check-device.c
+@@ -62,7 +62,7 @@ int main (int argc, char **argv)
+ 	unsigned long vendor;
+ 	unsigned long product;
+ 
+-	if (argc < 2)
++	if (argc < 3)
+ 		return 0;
+ 
+ 	vendor = strtoul(argv[1], NULL, 16);
+-- 
+2.8.3
+
