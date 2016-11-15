@@ -140,7 +140,7 @@ do_install_append() {
 
 PACKAGES =+ "${PN}-python ${PN}-python-dbg ${PN}-pidl libwinbind libwinbind-dbg libwinbind-krb5-locator"
 PACKAGES =+ "libwbclient libnss-winbind winbind winbind-dbg libnetapi libsmbsharemodes \
-             libsmbclient libsmbclient-dev lib${PN}-base ${PN}-base ${PN}-ctdb-tests"
+             libsmbclient libsmbclient-dev lib${BPN}-base ${PN}-base ${PN}-ctdb-tests"
 
 RDEPENDS_${PN} += "${PN}-base"
 
@@ -178,7 +178,7 @@ FILES_${PN}-ctdb-tests = "${bindir}/ctdb_run_tests \
 #     echo $l
 # done
 
-FILES_lib${PN}-base = "\
+FILES_lib${BPN}-base = "\
                     ${sysconfdir}/default \
                     ${sysconfdir}/samba \
                     ${libdir}/libdcerpc-binding.so.* \
