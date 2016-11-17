@@ -20,7 +20,7 @@ inherit cmake
 
 S = "${WORKDIR}/openobex-${PV}-Source"
 
-EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
+EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release -DBUILD_DOCUMENTATION=no"
 
 do_install_append () {
     if [ "`ls -A ${D}${bindir}`" = "" ]; then
