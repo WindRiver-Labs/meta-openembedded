@@ -15,6 +15,9 @@ DEPENDS += "gtk+3 glib-2.0 dbus-glib xfconf libxfce4ui libxfce4util libnotify \
 SRC_URI[md5sum] = "2e2e24a1a22912d6a561ba6155887503"
 SRC_URI[sha256sum] = "bde3157e06ab31ff23648d163d53ee5095f7819544a9f48d3a96d57829857f2b"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 EXTRA_OECONF = " \
     --enable-network-manager \
     --enable-panel-plugins \

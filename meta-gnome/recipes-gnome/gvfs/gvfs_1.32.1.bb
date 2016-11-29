@@ -11,6 +11,9 @@ SRC_URI = "https://download.gnome.org/sources/${BPN}/${@gnome_verdir("${PV}")}/$
 SRC_URI[archive.md5sum] = "cbe766b46f324e17d7abcfb4a89a1684"
 SRC_URI[archive.sha256sum] = "d0b6c9edab09d52472355657a2f0a14831b2e6c58caba395f721ab683f836ade"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 EXTRA_OECONF = " \
     --disable-gdu \
     --enable-udisks2 \

@@ -9,3 +9,6 @@ DEPENDS += "upower"
 
 SRC_URI[md5sum] = "550277af9886c47005117110f6e7ec0d"
 SRC_URI[sha256sum] = "2bf7d0802534a1eb2e9f251af2bb97abc3f58608c1f01511d302c06111d34812"
+
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
