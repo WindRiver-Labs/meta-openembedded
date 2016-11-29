@@ -45,6 +45,9 @@ SRC_URI[sha256sum] = "829378f318cc008d138a23ca6a9191928ce75344e7e47a2f2c35f4ac82
 
 S = "${WORKDIR}/NetworkManager-${PV}"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 EXTRA_OECONF = " \
     --disable-ifcfg-rh \
     --disable-ifnet \

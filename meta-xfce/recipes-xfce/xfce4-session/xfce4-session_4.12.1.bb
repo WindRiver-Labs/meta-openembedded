@@ -15,6 +15,9 @@ SRC_URI += " \
     file://0001-configure.in-hard-code-path-to-iceauth.patch \
 "
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 ALTERNATIVE_${PN} = "x-session-manager"
 ALTERNATIVE_TARGET[x-session-manager] = "${bindir}/xfce4-session"
 ALTERNATIVE_PRIORITY_${PN} = "100"
