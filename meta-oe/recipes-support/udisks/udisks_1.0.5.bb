@@ -17,6 +17,9 @@ SRC_URI = " \
 SRC_URI[udisks.md5sum] = "70d48dcfe523a74cd7c7fbbc2847fcdd"
 SRC_URI[udisks.sha256sum] = "f2ec82eb0ea7e01dc299b5b29b3c18cdf861236ec43dcff66b3552b4b31c6f71"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 inherit autotools-brokensep systemd gtk-doc
 
 PACKAGECONFIG ??= ""

@@ -23,6 +23,9 @@ SRC_URI += "\
     file://0002-Require-libnotify-0.6.1.patch \
 "
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 EXTRA_OECONF += "--disable-scrollkeeper"
 
 PACKAGECONFIG ??= ""
