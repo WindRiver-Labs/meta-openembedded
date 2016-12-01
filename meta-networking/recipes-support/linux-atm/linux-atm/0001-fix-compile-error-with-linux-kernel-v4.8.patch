@@ -1,4 +1,4 @@
-From 4ec3ef72357dd6c0355545b9ff8831d492b9f06f Mon Sep 17 00:00:00 2001
+From 7cdafc0dee8054f82777ed3bf6d4c8b5582d09ad Mon Sep 17 00:00:00 2001
 From: Dengke Du <dengke.du@windriver.com>
 Date: Tue, 18 Oct 2016 07:56:02 +0000
 Subject: [PATCH] fix compile error with linux kernel v4.8
@@ -10,10 +10,10 @@ time.h, so when compile the zntune.c, it break down by errors:
 	                'struct timezone' 'struct itimerval'
 
 We should exclude the linux time.h by disable linux/atm_zatm.h and
-move some useful definitions from linux/atm_zatm.h to a new header
-file in linux-atm source code to resolve it.
+move some useful definition in linux/atm_zatm.h to zntune.c to resolve
+it.
 
-Upstream-Status: Pending
+Upstream-status: Pending
 
 Signed-off-by: Dengke Du <dengke.du@windriver.com>
 ---
