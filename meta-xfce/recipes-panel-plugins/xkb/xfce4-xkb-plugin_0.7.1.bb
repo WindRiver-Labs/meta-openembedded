@@ -4,6 +4,9 @@ SECTION = "x11/application"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=496f09f084b0f7e6f02f769a84490c6b"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 inherit xfce-panel-plugin
 
 SRC_URI[md5sum] = "2f68e0d53baf68ecc1a7165ad33c26a9"

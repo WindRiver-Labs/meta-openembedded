@@ -3,6 +3,9 @@ HOMEPAGE = "http://goodies.xfce.org/projects/thunar-plugins/thunar-archive-plugi
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=252890d9eee26aab7b432e8b8a616475"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 inherit thunar-plugin
 
 SRC_URI[md5sum] = "425f4faaace6dc7a4716a35b7795463a"

@@ -10,4 +10,7 @@ DEPENDS += "libsoup-2.4 dbus-glib upower"
 SRC_URI[md5sum] = "29fe8892bb4c6b1e639862a63110618e"
 SRC_URI[sha256sum] = "651b722714fdafde3f548f183958c34e1539cf563193d7e51f28bfb6933d6d3f"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 FILES_${PN} += "${datadir}/xfce4/weather"

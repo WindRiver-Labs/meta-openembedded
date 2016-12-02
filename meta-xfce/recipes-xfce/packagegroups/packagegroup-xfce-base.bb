@@ -4,6 +4,9 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
 PR = "r5"
 
+# mozjs17 does NOT support mips64
+COMPATIBLE_HOST = "^(?!mips64).*"
+
 inherit packagegroup distro_features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
