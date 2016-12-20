@@ -10,6 +10,7 @@ SRC_URI = "file://run-ptest \
            file://0001-reflect-2.1-reporting-for-key-imports.patch \
            file://0002-passphrase_cb-is-deprecated.patch \
            file://0003-handle-generic-error-when-no-passphrase-callback-pre.patch \
+           file://0001-ignore-STATUS_KEY_CONSIDERED-when-editing.patch \
 "
 
 SRC_URI[md5sum] = "d38355af73f0352cde3d410b25f34fd0"
