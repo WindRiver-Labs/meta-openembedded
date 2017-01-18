@@ -15,6 +15,7 @@ SRC_URI = "http://ftp.heanet.ie/mirrors/ubuntu/pool/universe/i/${BPN}/${BPN}_${P
            file://build_with_updated_bio_struct_of_linux_v4.3_and_above.patch \
            file://build_with_updated_interfaces_of_linux_v4.8_and_above.patch \
            file://iscsitarget.service \
+           file://fix-call-trace-of-ahash-API-calling.patch \
 "
 
 SRC_URI[md5sum] = "ef9bc823bbabd3c772208c00d5f2d089"
