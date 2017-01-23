@@ -5,6 +5,9 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=ea114851ad9a8c311aac8728a681a067"
 
 SRC_URI[md5sum] = "1eadd93bd5e58d3528d977111f2997ea"
 SRC_URI[sha256sum] = "d30dd4d1cbbc36ebab6e4a2076820cfe0c60f10adf087fecbc5a3edae79fdc81"
+SRC_URI += " \
+    file://python-urllib3-CVE-2016-9015.patch \
+"
 
 RDEPENDS_${PN} += "\
     ${PYTHON_PN}-certifi \
