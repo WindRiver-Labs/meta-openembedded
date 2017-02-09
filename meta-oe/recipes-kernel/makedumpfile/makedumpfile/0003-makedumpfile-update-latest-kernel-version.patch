@@ -1,0 +1,31 @@
+From 8e6689abcdfe66aeb04b310ae3fa0ddf7f90b60b Mon Sep 17 00:00:00 2001
+From: Yi Zhao <yi.zhao@windriver.com>
+Date: Tue, 7 Feb 2017 06:22:35 +0000
+Subject: [PATCH] makedumpfile: update latest kernel version
+
+Update the latest kernel version from 4.8.1 to 4.8.17 which is the
+final version for 4.8.
+
+Upstream-Status: Pending
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ makedumpfile.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/makedumpfile.h b/makedumpfile.h
+index e32e567..1a126b4 100644
+--- a/makedumpfile.h
++++ b/makedumpfile.h
+@@ -472,7 +472,7 @@ do { \
+ #define KVER_MIN_SHIFT 16
+ #define KERNEL_VERSION(x,y,z) (((x) << KVER_MAJ_SHIFT) | ((y) << KVER_MIN_SHIFT) | (z))
+ #define OLDEST_VERSION		KERNEL_VERSION(2, 6, 15)/* linux-2.6.15 */
+-#define LATEST_VERSION		KERNEL_VERSION(4, 8, 1)/* linux-4.8.1 */
++#define LATEST_VERSION		KERNEL_VERSION(4, 8, 17)/* linux-4.8.17 */
+ 
+ /*
+  * vmcoreinfo in /proc/vmcore
+-- 
+2.11.0
+
