@@ -1,0 +1,50 @@
+From 3980cc6053fcb56c6ae959f72ae5bd5dca97c0df Mon Sep 17 00:00:00 2001
+From: Mingli Yu <Mingli.Yu@windriver.com>
+Date: Wed, 15 Feb 2017 16:55:52 +0800
+Subject: [PATCH] configure.ac: make trousers check optional
+
+Make the check for trousers library optional
+to remove the below warning as the trouser
+is optional
+| WARNING: lib32-openconnect-7.06-r0 do_package_qa: QA Issue: lib32-openconnect rdepends on lib32-trousers, but it isn't a build dependency, missing lib32-trousers in DEPENDS or PACKAGECONFIG? [build-deps]
+| WARNING: openconnect-7.06-r0 do_package_qa: QA Issue: openconnect rdepends on trousers, but it isn't a build dependency, missing trousers in DEPENDS or PACKAGECONFIG? [build-deps]
+
+Upstream-status: Pending
+
+Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+---
+ configure.ac | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index cb884fe..9a5c4bc 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -402,9 +402,13 @@ if test "$with_gnutls" = "yes"; then
+     AC_CHECK_FUNC(gnutls_pkcs11_add_provider,
+ 		 [PKG_CHECK_MODULES(P11KIT, p11-kit-1, [AC_DEFINE(HAVE_P11KIT, 1, [Have. P11. Kit.])
+     			      		  AC_SUBST(P11KIT_PC, p11-kit-1)], [:])], [])
+-    LIBS="$oldlibs -ltspi"
+-    AC_MSG_CHECKING([for tss library])
+-    AC_LINK_IFELSE([AC_LANG_PROGRAM([
++    AC_ARG_WITH([trousers],
++	    AS_HELP_STRING([--without-trousers],
++		       [Do not attempt to use trousers]))
++    if test "$with_trousers" = "yes"; then
++        LIBS="$oldlibs -ltspi"
++        AC_MSG_CHECKING([for tss library])
++        AC_LINK_IFELSE([AC_LANG_PROGRAM([
+ 		   #include <trousers/tss.h>
+ 		   #include <trousers/trousers.h>],[
+ 		   int err = Tspi_Context_Create((void *)0);
+@@ -414,6 +418,7 @@ if test "$with_gnutls" = "yes"; then
+ 		   AC_SUBST([TSS_CFLAGS], [])
+ 		   AC_DEFINE(HAVE_TROUSERS, 1, [Have Trousers TSS library])],
+ 		  [AC_MSG_RESULT(no)])
++    fi
+     LIBS="$oldlibs"
+     CFLAGS="$oldcflags"
+ fi
+-- 
+2.8.1
+

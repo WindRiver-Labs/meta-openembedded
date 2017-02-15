@@ -13,11 +13,14 @@ PACKAGECONFIG[libproxy]  = "--with-libproxy,--without-libproxy,libproxy,"
 
 # not config defaults
 PACKAGECONFIG[pcsc-lite] = "--with-libpcsclite,--without-libpcsclite,pcsc-lite,"
+PACKAGECONFIG[trousers] = "--with-trousers,--without-trousers,trousers,"
 
 PV = "7.06"
 
 SRCREV = "35542d52202672b8c12ecc63867432128244013a"
-SRC_URI = "git://git.infradead.org/users/dwmw2/openconnect.git"
+SRC_URI = "git://git.infradead.org/users/dwmw2/openconnect.git \
+           file://0001-configure.ac-make-trousers-check-optional.patch \
+"
 
 S = "${WORKDIR}/git"
 
