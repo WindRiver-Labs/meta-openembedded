@@ -10,6 +10,7 @@ SRC_URI = " \
     file://unnecessary-to-check-libpcap.patch \
     file://tcpdump-configure-dlpi.patch \
     file://add-ptest.patch \
+    file://tcpdump-CVE-2016-7974.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -26,6 +27,17 @@ PACKAGECONFIG[smi] = "--with-smi, --without-smi,libsmi"
 PACKAGECONFIG[libcap-ng] = "--with-cap-ng=yes,--with-cap-ng=no,libcap-ng"
 
 EXTRA_AUTORECONF += " -I m4"
+
+do_git_apply () {
+       cd ${S}
+       if [ ! -f tests/heap-overflow-1.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2016-7974.patch
+       fi
+}
+
+do_patch_append() {
+    bb.build.exec_func('do_git_apply', d)
+}
 
 do_configure_prepend() {
     mkdir -p ${S}/m4
