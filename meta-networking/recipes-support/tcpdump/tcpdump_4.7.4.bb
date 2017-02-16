@@ -11,6 +11,7 @@ SRC_URI = " \
     file://tcpdump-configure-dlpi.patch \
     file://add-ptest.patch \
     file://tcpdump-CVE-2016-7974.patch;apply=no \
+    file://tcpdump-CVE-2016-7992.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -32,6 +33,9 @@ do_git_apply () {
        cd ${S}
        if [ ! -f tests/heap-overflow-1.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2016-7974.patch
+       fi
+       if [ ! -f tests/heap-overflow-2.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2016-7992.patch
        fi
 }
 
