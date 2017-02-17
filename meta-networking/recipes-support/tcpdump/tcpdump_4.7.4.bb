@@ -23,6 +23,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7926.patch;apply=no \
     file://tcpdump-CVE-2016-7975-2.patch;apply=no \
     file://tcpdump-CVE-2016-7924.patch;apply=no \
+    file://tcpdump-CVE-2016-7975-3.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -77,6 +78,9 @@ do_git_apply () {
        fi
        if [ ! -f tests/atm-oam-heapoverflow.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2016-7924.patch
+       fi
+       if [ ! -f tests/tcp_header_heapoverflow.out ]; then
+               git apply ${S}/../tcpdump-CVE-2016-7975-3.patch
        fi
 }
 
