@@ -1,0 +1,32 @@
+From c4ba5098d63f1f511d87dbf65e5b5d118e4e43d4 Mon Sep 17 00:00:00 2001
+From: Guy Harris <guy@alum.mit.edu>
+Date: Sun, 26 Apr 2015 17:09:16 -0700
+Subject: [PATCH] Fix heuristic not to be byte-order-dependent.
+
+I'm *guessing* that the item being fetched is big-endian; the "vt"
+protocol might be old enough that they developed it on (non-Sun386i) Sun
+workstations, assuming they didn't just say "this is an Internet
+protocol, hence fields are big-endian").
+
+That also prevents problems on platforms that don't support unaligned
+accesses.
+---
+ print-udp.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/print-udp.c b/print-udp.c
+index 1781612..eddc771 100644
+--- a/print-udp.c
++++ b/print-udp.c
+@@ -96,7 +96,7 @@ static void
+ vat_print(netdissect_options *ndo, const void *hdr, register const struct udphdr *up)
+ {
+ 	/* vat/vt audio */
+-	u_int ts = *(uint16_t *)hdr;
++	u_int ts = EXTRACT_16BITS(hdr);
+ 	if ((ts & 0xf060) != 0) {
+ 		/* probably vt */
+ 		ND_PRINT((ndo, "udp/vt %u %d / %d",
+-- 
+1.7.9.5
+
