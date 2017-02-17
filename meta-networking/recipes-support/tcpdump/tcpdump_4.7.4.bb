@@ -54,6 +54,8 @@ SRC_URI = " \
     file://tcpdump-CVE-2017-5485.patch \
     file://tcpdump-CVE-2017-5486-2.patch;apply=no \
     file://tcpdump-CVE-2017-5485-2.patch;apply=no \
+    file://tcpdump-CVE-2017-5205.patch \
+    file://tcpdump-CVE-2017-5205-2.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -172,6 +174,9 @@ do_git_apply () {
        fi
        if [ ! -f tests/isoclns-heapoverflow-2.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2017-5485-2.patch
+       fi
+       if [ ! -f tests/ikev2pI2-segfault.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2017-5205-2.patch
        fi
 }
 
