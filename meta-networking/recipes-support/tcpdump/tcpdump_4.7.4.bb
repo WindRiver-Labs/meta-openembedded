@@ -29,6 +29,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7936.patch;apply=no \
     file://tcpdump-CVE-2016-7973-2.patch;apply=no \
     file://tcpdump-CVE-2016-7931.patch;apply=no \
+    file://tcpdump-CVE-2016-7974-3.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -101,6 +102,9 @@ do_git_apply () {
        fi
        if [ ! -f tests/mpls-label-heapoverflow.out ]; then
                git apply ${S}/../tcpdump-CVE-2016-7931.patch
+       fi
+       if [ ! -f tests/bad-ipv4-version-pgm-heapoverflow.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2016-7974-3.patch
        fi
 }
 
