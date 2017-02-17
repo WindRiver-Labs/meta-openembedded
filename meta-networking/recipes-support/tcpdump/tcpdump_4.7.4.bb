@@ -49,6 +49,8 @@ SRC_URI = " \
     file://tcpdump-CVE-2017-5482.patch;apply=no \
     file://tcpdump-CVE-2017-5483.patch;apply=no \
     file://tcpdump-CVE-2017-5484.patch;apply=no \
+    file://0001-Add-more-checks.patch \
+    file://tcpdump-CVE-2017-5486.patch \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
