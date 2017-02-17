@@ -42,6 +42,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7934-7935-7937.patch;apply=no \
     file://tcpdump-CVE-2017-5203.patch \
     file://tcpdump-CVE-2017-5202.patch \
+    file://tcpdump-CVE-2017-5204.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -135,6 +136,9 @@ do_git_apply () {
                git apply ${S}/../0001-Fix-heuristic-not-to-be-byte-order-dependent.patch
                git apply ${S}/../0001-Fetch-RTP-option-and-extension-data-using-EXTRACT_32.patch
                git apply ${S}/../tcpdump-CVE-2016-7934-7935-7937.patch
+       fi
+       if [ ! -f tests/ipv6hdr-heapoverflow.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2017-5204.patch
        fi
 }
 
