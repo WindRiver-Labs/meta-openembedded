@@ -45,6 +45,8 @@ SRC_URI = " \
     file://tcpdump-CVE-2017-5204.patch;apply=no \
     file://tcpdump-CVE-2017-5341.patch;apply=no \
     file://tcpdump-CVE-2017-5342.patch;apply=no \
+    file://0001-Add-some-packet-length-checks.patch;apply=no \
+    file://tcpdump-CVE-2017-5482.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -147,6 +149,10 @@ do_git_apply () {
        fi
        if [ ! -f tests/otv-heapoverflow-2.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2017-5342.patch
+       fi
+       if [ ! -f tests/q933-heapoverflow-2.pcap ]; then
+               git apply ${S}/../0001-Add-some-packet-length-checks.patch
+               git apply ${S}/../tcpdump-CVE-2017-5482.patch
        fi
 }
 
