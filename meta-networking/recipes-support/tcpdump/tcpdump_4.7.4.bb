@@ -41,6 +41,7 @@ SRC_URI = " \
     file://0001-Fetch-RTP-option-and-extension-data-using-EXTRACT_32.patch;apply=no \
     file://tcpdump-CVE-2016-7934-7935-7937.patch;apply=no \
     file://tcpdump-CVE-2017-5203.patch \
+    file://tcpdump-CVE-2017-5202.patch \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
