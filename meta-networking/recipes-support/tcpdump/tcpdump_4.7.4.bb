@@ -17,6 +17,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7925.patch;apply=no \
     file://tcpdump-CVE-2016-7974-2.patch;apply=no \
     file://tcpdump-CVE-2016-7975.patch;apply=no \
+    file://tcpdump-CVE-2016-7922.patch \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
