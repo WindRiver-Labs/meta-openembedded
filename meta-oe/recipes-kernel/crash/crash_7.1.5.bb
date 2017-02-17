@@ -22,6 +22,9 @@ SRC_URI = "https://github.com/crash-utility/${BPN}/archive/${PV}.tar.gz;download
            file://donnot-extract-gdb-during-do-compile.patch \
            file://gdb_build_jobs_and_not_write_crash_target.patch \
            file://remove-unrecognized-gcc-option-m32-for-mips.patch \
+           file://0001-Fix-timer-for-Linux-4.8.patch \
+           file://0002-Implemented-new-list-S-and-tree-S-options.patch \
+           file://0003-Fix-for-the-tree-t-radix-irq-and-files-p-command.patch \
            "
 
 SRC_URI[md5sum] = "7bd06eaec6827d4fac636b2b592d3056"
