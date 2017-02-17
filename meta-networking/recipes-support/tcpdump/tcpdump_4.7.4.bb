@@ -19,6 +19,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7975.patch;apply=no \
     file://tcpdump-CVE-2016-7922.patch \
     file://tcpdump-CVE-2016-7939.patch;apply=no \
+    file://tcpdump-CVE-2016-7927.patch;apply=no \
     file://run-ptest \
 "
 SRC_URI[md5sum] = "58af728de36f499341918fc4b8e827c3"
@@ -61,6 +62,9 @@ do_git_apply () {
        fi
        if [ ! -f tests/gre-heapoverflow-1.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2016-7939.patch
+       fi
+       if [ ! -f tests/radiotap-heapoverflow.pcap ]; then
+               git apply ${S}/../tcpdump-CVE-2016-7927.patch
        fi
 }
 
