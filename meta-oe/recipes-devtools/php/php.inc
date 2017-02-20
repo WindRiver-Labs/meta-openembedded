@@ -13,6 +13,14 @@ SRC_URI = "http://php.net/distributions/php-${PV}.tar.bz2 \
            file://acinclude-xml2-config.patch \
            file://0001-php-don-t-use-broken-wrapper-for-mkdir.patch \
            file://0001-acinclude-use-pkgconfig-for-libxml2-config.patch \
+           file://php-CVE-2016-10160.patch \
+           file://php-CVE-2016-9137.patch \
+           file://php-CVE-2016-9935.patch \
+           file://php-CVE-2016-10158.patch \
+           file://php-CVE-2016-10161.patch \
+           file://php-CVE-2016-10159.patch \
+           file://php-CVE-2016-7479.patch \
+           file://php-CVE-2016-9934.patch \
           "
 
 SRC_URI_append_class-target = " \
