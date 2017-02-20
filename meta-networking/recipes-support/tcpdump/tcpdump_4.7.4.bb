@@ -36,7 +36,7 @@ SRC_URI = " \
     file://tcpdump-CVE-2016-7983-7984.patch;apply=no \
     file://tcpdump-CVE-2016-7993.patch;apply=no \
     file://tcpdump-CVE-2016-7938.patch \
-    file://tcpdump-CVE-2016-7922-2.patch \
+    file://tcpdump-CVE-2016-7922-2.patch;apply=no \
     file://0001-Fix-heuristic-not-to-be-byte-order-dependent.patch;apply=no \
     file://0001-Fetch-RTP-option-and-extension-data-using-EXTRACT_32.patch;apply=no \
     file://tcpdump-CVE-2016-7934-7935-7937.patch;apply=no \
@@ -134,6 +134,7 @@ do_git_apply () {
        fi
        if [ ! -f tests/stp-heapoverflow-1.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2016-7940.patch
+               git apply ${S}/../tcpdump-CVE-2016-7922-2.patch
        fi
        if [ ! -f tests/arp-too-long-tha.pcap ]; then
                git apply ${S}/../tcpdump-CVE-2016-7923.patch
