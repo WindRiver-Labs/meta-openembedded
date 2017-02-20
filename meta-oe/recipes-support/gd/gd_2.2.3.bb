@@ -18,6 +18,7 @@ SRC_URI = "git://github.com/libgd/libgd.git;branch=GD-2.2 \
            file://0001-Fix-integer-overflow-in-gdImageWebpCtx.patch \
            file://libgd-CVE-2016-8670.patch \
            file://libgd-CVE-2016-6911.patch \
+           file://libgd-CVE-2016-6912.patch \
           "
 
 SRCREV = "46ceef5970bf3a847ff61d1bdde7501d66c11d0c"
