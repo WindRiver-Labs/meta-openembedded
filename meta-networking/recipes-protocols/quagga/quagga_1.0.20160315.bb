@@ -3,6 +3,7 @@ require quagga.inc
 SRC_URI += " \
             file://0001-ospf6d-check-ospf6-before-using-it-in-ospf6_clean.patch \
             file://0002-fix-CVE-2016-4049.patch \
+            file://quagga-CVE-2017-5495.patch \
 "
 
 SRC_URI[md5sum] = "e73d6e527fb80240f180de420cfe8042"
