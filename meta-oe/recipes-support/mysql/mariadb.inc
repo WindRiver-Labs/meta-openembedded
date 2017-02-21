@@ -17,8 +17,8 @@ SRC_URI = "http://archive.mariadb.org/mariadb-${PV}/source/mariadb-${PV}.tar.gz 
            file://fix-a-building-failure.patch \
            file://change-cc-to-cc-version.patch \
           "
-SRC_URI[md5sum] = "fca86f1eaed2163b4bdce4f98f472324"
-SRC_URI[sha256sum] = "e142f9459507b97c5848042863b313ce70750118446bb4e35e5c07fe66007293"
+SRC_URI[md5sum] = "12ce3151e88fb62a731e215cbed45aef"
+SRC_URI[sha256sum] = "54405ad9beff02339819eb73c59b4bf25f58a2c5abffbf17e81c4940a893538c"
 
 S = "${WORKDIR}/mariadb-${PV}"
 
