@@ -12,6 +12,7 @@ PATCHSET = "10"
 SRC_URI = "http://www.imagemagick.org/download/releases/ImageMagick-${PV}-${PATCHSET}.tar.xz \
            file://CVE-2016-8707.patch \
            file://CVE-2016-7799.patch \
+           file://CVE-2016-9298.patch \
 "
 SRC_URI[md5sum] = "e1cb23d9c10a8eff228ef30ee281711a"
 SRC_URI[sha256sum] = "dad306bfd7730e1665c6fdb6eb478fb2c41e2db71ab56451bbaebe9df546b1d2"
