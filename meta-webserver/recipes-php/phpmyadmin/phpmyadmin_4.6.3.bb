@@ -6,6 +6,72 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
                     file://libraries/tcpdf/LICENSE.TXT;md5=5c87b66a5358ebcc495b03e0afcd342c"
 
 SRC_URI = "https://files.phpmyadmin.net/phpMyAdmin/${PV}/phpMyAdmin-${PV}-all-languages.tar.xz \
+           file://CVE-2016-6625.patch \
+           file://CVE-2016-6622.patch \
+           file://CVE-2016-6620.patch \
+           file://CVE-2016-9849.patch \
+           file://CVE-2016-9847.patch \
+           file://CVE-2016-6619.patch \
+           file://CVE-2016-6618.patch \
+           file://CVE-2016-6615.patch \
+           file://CVE-2016-6615-2.patch \
+           file://CVE-2016-6615-3.patch \
+           file://CVE-2016-6614.patch \
+           file://CVE-2016-6617.patch \
+           file://CVE-2016-6616.patch \
+           file://CVE-2016-6616-2.patch \
+           file://CVE-2016-6610.patch \
+           file://CVE-2016-6613.patch \
+           file://CVE-2016-6612.patch \
+           file://CVE-2016-9858.patch \
+           file://CVE-2016-9858-2.patch \
+           file://CVE-2016-9858-3.patch \
+           file://CVE-2016-9852.patch \
+           file://CVE-2016-9852-2.patch \
+           file://CVE-2016-9850.patch \
+           file://CVE-2016-9850-2.patch \
+           file://CVE-2016-9851.patch \
+           file://CVE-2016-9856.patch \
+           file://CVE-2016-9856-2.patch \
+           file://CVE-2016-6632.patch \
+           file://CVE-2016-6611.patch \
+           file://CVE-2016-6608.patch \
+           file://CVE-2016-6608-2.patch \
+           file://CVE-2016-6608-3.patch \
+           file://CVE-2016-6608-4.patch \
+           file://CVE-2016-6606.patch \
+           file://CVE-2016-9866.patch \
+           file://CVE-2016-9865.patch \
+           file://CVE-2016-9864.patch \
+           file://CVE-2016-9864-2.patch \
+           file://CVE-2016-9863.patch \
+           file://CVE-2016-9862.patch \
+           file://CVE-2016-6633.patch \
+           file://CVE-2016-6630.patch \
+           file://CVE-2016-6609.patch \
+           file://CVE-2016-6624.patch \
+           file://CVE-2016-6627.patch \
+           file://CVE-2016-6623.patch \
+           file://CVE-2016-6628.patch \
+           file://0001-Add-tests-for-PMA_isAllowedDomain.patch \
+           file://CVE-2016-6626.patch \
+           file://CVE-2016-9861.patch \
+           file://CVE-2016-6631.patch \
+           file://CVE-2016-6621.patch \
+           file://CVE-2016-6607.patch \
+           file://CVE-2016-6607-2.patch \
+           file://CVE-2016-6607-3.patch \
+           file://CVE-2016-6607-4.patch \
+           file://CVE-2016-6607-5.patch \
+           file://CVE-2016-6607-6.patch \
+           file://CVE-2016-6607-7.patch \
+           file://CVE-2016-6607-8.patch \
+           file://CVE-2016-6607-9.patch \
+           file://CVE-2016-6607-10.patch \
+           file://CVE-2016-6607-11.patch \
+           file://CVE-2016-6607-12.patch \
+           file://CVE-2016-6607-13.patch \
+           file://CVE-2016-6607-14.patch \
            file://apache.conf \
 "
 

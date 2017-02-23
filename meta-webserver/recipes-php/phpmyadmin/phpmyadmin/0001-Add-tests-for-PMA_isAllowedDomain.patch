@@ -1,0 +1,75 @@
+From 7e6edaf756201034b5e08b40f3ffb9f8af9a7d49 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michal=20=C4=8Ciha=C5=99?= <michal@cihar.com>
+Date: Mon, 18 Jul 2016 16:36:55 +0200
+Subject: [PATCH] Add tests for PMA_isAllowedDomain
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Michal Čihař <michal@cihar.com>
+---
+ test/libraries/core/PMA_isAllowedDomain_test.php |   52 ++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 test/libraries/core/PMA_isAllowedDomain_test.php
+
+diff --git a/test/libraries/core/PMA_isAllowedDomain_test.php b/test/libraries/core/PMA_isAllowedDomain_test.php
+new file mode 100644
+index 0000000..ad5296f
+--- /dev/null
++++ b/test/libraries/core/PMA_isAllowedDomain_test.php
+@@ -0,0 +1,52 @@
++<?php
++/* vim: set expandtab sw=4 ts=4 sts=4: */
++/**
++ * Test for PMA_isAllowedDomain
++ *
++ * @package PhpMyAdmin-test
++ */
++
++/*
++ * Include to test.
++ */
++require_once 'libraries/core.lib.php';
++
++class PMA_isAllowedDomain_test extends PHPUnit_Framework_TestCase
++{
++    /**
++     * Test for unserializing
++     *
++     * @param string $url      URL to test
++     * @param mixed  $expected Expected result
++     *
++     * @return void
++     *
++     * @dataProvider provideURLs
++     */
++    function testIsAllowedDomain($url, $expected)
++    {
++        $_SERVER['SERVER_NAME'] = 'server.local';
++        $this->assertEquals(
++            $expected,
++            PMA_isAllowedDomain($url)
++        );
++    }
++
++    /**
++     * Test data provider
++     *
++     * @return array
++     */
++    function provideURLs()
++    {
++        return array(
++            array('https://www.phpmyadmin.net/', true),
++            array('http://duckduckgo.com\\@github.com', true),
++            array('https://github.com/', true),
++            array('https://server.local/', true),
++        );
++    }
++
++}
++
++
+-- 
+1.7.9.5
+
