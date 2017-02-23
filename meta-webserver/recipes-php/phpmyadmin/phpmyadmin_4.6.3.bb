@@ -57,6 +57,7 @@ SRC_URI = "https://files.phpmyadmin.net/phpMyAdmin/${PV}/phpMyAdmin-${PV}-all-la
            file://CVE-2016-6626.patch \
            file://CVE-2016-9861.patch \
            file://CVE-2016-6631.patch \
+           file://CVE-2016-6621.patch \
            file://apache.conf \
 "
 
