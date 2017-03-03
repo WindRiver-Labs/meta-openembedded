@@ -4,10 +4,12 @@ SECTION = "libs"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0036c1b155f4e999f3e0a373490b5db9"
 
-SRC_URI = "http://libdnet.googlecode.com/files/libdnet-${PV}.tgz"
+SRC_URI = "https://github.com/dugsong/${BPN}/archive/${BP}.tar.gz"
 
-SRC_URI[md5sum] = "9253ef6de1b5e28e9c9a62b882e44cc9"
-SRC_URI[sha256sum] = "83b33039787cf99990e977cef7f18a5d5e7aaffc4505548a83d31bd3515eb026"
+SRC_URI[md5sum] = "d2f1b72eac2a1070959667e9e61dcf20"
+SRC_URI[sha256sum] = "b6360659c93fa2e3cde9e0a1fc9c07bc4111f3448c5de856e095eb98315dd424"
+
+S = "${WORKDIR}/${BPN}-${BP}"
 
 inherit autotools
 
