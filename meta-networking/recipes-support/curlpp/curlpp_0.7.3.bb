@@ -1,5 +1,5 @@
 SUMMARY = "C++ library for client-side URL transfers"
-HOMEPAGE = "http://code.google.com/p/curlpp/"
+HOMEPAGE = "http://www.curlpp.org/"
 SECTION = "libdevel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
@@ -7,12 +7,12 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
 DEPENDS = "curl boost"
 DEPENDS_class-native = "curl-native"
 
-SRC_URI = "http://curlpp.googlecode.com/files/curlpp-${PV}.tar.gz \
+SRC_URI = "https://github.com/jpbarrette/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
     file://example21.cpp-remove-deprecated-code.patch \
 "
 
-SRC_URI[md5sum] = "ccc3d30d4b3b5d2cdbed635898c29485"
-SRC_URI[sha256sum] = "e3f9427b27c5bddf898d383d45c0d3d5397e2056ff935d9a5cdaef6a9a653bd5"
+SRC_URI[md5sum] = "ee05f248bf3bbf7f381d65cf2d0ee50f"
+SRC_URI[sha256sum] = "b72093f221a9e2d0f7ce0bd0f846587835e01607a7bb0f106ff4317a8c30a81c"
 
 inherit autotools-brokensep pkgconfig binconfig
 
