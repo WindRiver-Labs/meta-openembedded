@@ -70,6 +70,10 @@ SYSTEMD_AUTO_ENABLE = "disable"
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
+PACKAGES =+ "${PN}-udevrules libdevmapper"
+FILES_${PN}-udevrules = "${nonarch_base_libdir}/udev/rules.d"
+FILES_libdevmapper = "${sbindir}/dmsetup ${libdir}/libdevmapper.so.*"
+RRECOMMENDS_libdevmapper += "${PN}-udevrules"
 FILES_${PN} += "${libdir}/device-mapper/*.so ${base_libdir}/udev"
 FILES_${PN}-dbg += "${libdir}/device-mapper/.debug"
 
