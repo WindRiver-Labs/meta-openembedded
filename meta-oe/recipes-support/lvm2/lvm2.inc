@@ -24,3 +24,26 @@ PACKAGECONFIG[selinux] = "--enable-selinux,--disable-selinux,libselinux"
 PACKAGECONFIG[thin-provisioning-tools] = "--with-thin=internal,--with-thin=none,,thin-provisioning-tools"
 PACKAGECONFIG[odirect] = "--enable-o_direct,--disable-o_direct"
 PACKAGECONFIG[udev] = "--enable-udev_sync --enable-udev_rules --with-udevdir=${nonarch_base_libdir}/udev/rules.d,--disable-udev_sync --disable-udev_rules,udev"
+
+PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)} \
+                   thin-provisioning-tools \
+                   odirect \
+                   udev \
+"
+# Unset user/group to unbreak install.
+EXTRA_OECONF = "--with-user= \
+                --with-group= \
+                --enable-realtime \
+                --enable-applib \
+                --enable-cmdlib \
+                --enable-pkgconfig \
+                --enable-dmeventd \
+                --enable-lvmetad \
+                --with-usrlibdir=${libdir} \
+                --with-systemdsystemunitdir=${systemd_system_unitdir} \
+                --disable-thin_check_needs_check \
+                --with-thin-check=${sbindir}/thin_check \
+                --with-thin-dump=${sbindir}/thin_dump \
+                --with-thin-repair=${sbindir}/thin_repair \
+                --with-thin-restore=${sbindir}/thin_restore \
+"

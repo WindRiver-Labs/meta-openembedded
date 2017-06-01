@@ -1,27 +1,6 @@
 require lvm2.inc
 
-PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)} \
-                   thin-provisioning-tools \
-                   odirect \
-                   udev \
-"
-# Unset user/group to unbreak install.
-EXTRA_OECONF = "--with-user= \
-                --with-group= \
-                --enable-realtime \
-                --enable-applib \
-                --enable-cmdlib \
-                --enable-pkgconfig \
-                --enable-dmeventd \
-                --enable-lvmetad \
-                --with-usrlibdir=${libdir} \
-                --with-systemdsystemunitdir=${systemd_system_unitdir} \
-                --disable-thin_check_needs_check \
-                --with-thin-check=${sbindir}/thin_check \
-                --with-thin-dump=${sbindir}/thin_dump \
-                --with-thin-repair=${sbindir}/thin_repair \
-                --with-thin-restore=${sbindir}/thin_restore \
-"
+SRC_URI += "file://0001-libdm-disable-installation-explicitly.patch"
 
 CACHED_CONFIGUREVARS += "MODPROBE_CMD=${base_sbindir}/modprobe"
 
@@ -37,10 +16,6 @@ do_install_append() {
         mv ${D}${sysconfdir}/rc.d/init.d ${D}${sysconfdir}/init.d
         rm -rf ${D}${sysconfdir}/rc.d
     fi
-    # Remove things related to libdevmapper
-    rm -f ${D}${sbindir}/dmsetup
-    rm -f ${D}${libdir}/libdevmapper.so.*
-    rm -f ${D}${libdir}/libdevmapper.so ${D}${libdir}/pkgconfig/devmapper.pc ${D}${includedir}/libdevmapper.h
 }
 
 SYSTEMD_PACKAGES = "${PN}"

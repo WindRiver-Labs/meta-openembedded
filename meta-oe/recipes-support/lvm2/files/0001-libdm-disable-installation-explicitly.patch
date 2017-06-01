@@ -1,0 +1,29 @@
+From 8cba1e02008c5c4eb2015a1085f9515035a5a61e Mon Sep 17 00:00:00 2001
+From: Chen Qi <Qi.Chen@windriver.com>
+Date: Thu, 1 Jun 2017 14:03:04 +0800
+Subject: [PATCH] libdm: disable installation explicitly
+
+Upstream-Status: Inappropriate [OE specific]
+
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ libdm/Makefile.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/libdm/Makefile.in b/libdm/Makefile.in
+index 3c9a4ce..ec8e08b 100644
+--- a/libdm/Makefile.in
++++ b/libdm/Makefile.in
+@@ -77,7 +77,8 @@ ifeq ("@PKGCONFIG@", "yes")
+   INSTALL_TYPE += install_pkgconfig
+ endif
+ 
+-install: $(INSTALL_TYPE) install_include
++install:
++	echo "Do not install device mapper in lvm2"
+ 
+ install_device-mapper: install
+ 
+-- 
+2.11.0
+
