@@ -11,5 +11,5 @@ inherit pypi setuptools3
 BBCLASSEXTEND = "nativesdk"
 
 RDEPENDS_${PN} = "\
-    python-core \
+    python3-core \
 "

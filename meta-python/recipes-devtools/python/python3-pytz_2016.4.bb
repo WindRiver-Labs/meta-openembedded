@@ -11,6 +11,6 @@ inherit pypi setuptools3
 BBCLASSEXTEND = "nativesdk"
 
 RDEPENDS_${PN} = "\
-    python-core \
-    python-datetime \
+    python3-core \
+    python3-datetime \
 "
