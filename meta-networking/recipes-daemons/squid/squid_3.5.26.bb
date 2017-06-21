@@ -25,6 +25,7 @@ SRC_URI = "http://www.squid-cache.org/Versions/v${MAJ_VER}/${MIN_VER}/${BPN}-${P
            file://0001-configure-Check-for-Wno-error-format-truncation-comp.patch \
            file://gcc7-fixes.patch \
            file://0001-tools.cc-fixed-unused-result-warning.patch \
+           file://0001-squid-let-it-compile-ok-for-gcc7.patch \
            "
 
 SRC_URI_remove_toolchain-clang = "file://0001-configure-Check-for-Wno-error-format-truncation-comp.patch"
