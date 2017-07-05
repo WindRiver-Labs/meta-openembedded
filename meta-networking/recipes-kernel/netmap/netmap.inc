@@ -14,4 +14,4 @@ SRC_URI += "file://makefile_fixup.patch"
 
 S = "${WORKDIR}/git"
 
-COMPATIBLE_HOST = '(x86_64|i.86|mips|arm).*-linux'
+COMPATIBLE_HOST = '(x86_64|i.86|mips|arm|aarch64).*-linux'
