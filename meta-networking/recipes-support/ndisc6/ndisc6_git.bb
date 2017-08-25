@@ -70,3 +70,7 @@ RDEPENDS_${PN}-tcptraceroute6 = "${PN}-rltraceroute6"
 RDEPENDS_${PN}-tracert6 = "${PN}-rltraceroute6"
 RDEPENDS_${PN}-misc += "perl"
 
+# We do not run perl during the build, but only use it on the target.
+do_configure_prepend() {
+    export PERL="/usr/bin/perl"
+}
