@@ -1,0 +1,32 @@
+From b5de7a89f31a17d37beb5d22857bbf829dbfb367 Mon Sep 17 00:00:00 2001
+From: Dengke Du <dengke.du@windriver.com>
+Date: Mon, 28 Aug 2017 23:17:04 -0400
+Subject: [PATCH] Before use rpc/rpc.h, check it first.
+
+When generate configure using *.m4, the ../NIS/required.m4, we should
+check the rpc/rpc.h first before using it.
+
+Upstream-Status: Pending
+
+Signed-off-by: Dengke Du <dengke.du@windriver.com>
+---
+ helpers/basic_auth/NIS/required.m4 | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/helpers/basic_auth/NIS/required.m4 b/helpers/basic_auth/NIS/required.m4
+index fdb1360..ec4fe69 100755
+--- a/helpers/basic_auth/NIS/required.m4
++++ b/helpers/basic_auth/NIS/required.m4
+@@ -6,7 +6,8 @@
+ ##
+ 
+ BUILD_HELPER="NIS"
+-AC_CHECK_HEADERS([sys/types.h rpc/rpc.h rpcsvc/ypclnt.h rpcsvc/yp_prot.h crypt.h],[],[BUILD_HELPER=""],AC_INCLUDES_DEFAULT([
++AC_CHECK_HEADERS([rpc/rpc.h])
++AC_CHECK_HEADERS([sys/types.h rpcsvc/ypclnt.h rpcsvc/yp_prot.h crypt.h],[],[BUILD_HELPER=""],AC_INCLUDES_DEFAULT([
+ #if HAVE_RPC_RPC_H
+ #include <rpc/rpc.h>
+ #endif
+-- 
+2.8.1
+
