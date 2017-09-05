@@ -1,3 +1,8 @@
+To enable gnome, you need to add the following to your system:
+
+require conf/enable_gnome.conf
+
+
 This layer depends on:
 
 URI: git://github.com/openembedded/oe-core.git
