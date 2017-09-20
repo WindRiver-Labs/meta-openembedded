@@ -4,12 +4,10 @@ HOMEPAGE = "http://www.openjpeg.org"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c648878b4840d7babaade1303e7f108c"
 
-SRC_URI = "https://github.com/uclouvain/${BPN}/archive/v${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
-           file://0001-bmp_read_info_header-reject-bmp-files-with-biBitCoun.patch \
+SRC_URI = "git://github.com/uclouvain/openjpeg.git \
           "
-SRC_URI[md5sum] = "269bb0b175476f3addcc0d03bd9a97b6"
-SRC_URI[sha256sum] = "6fddbce5a618e910e03ad00d66e7fcd09cc6ee307ce69932666d54c73b7c6e7b"
-
+S = "${WORKDIR}/git"
+SRCREV = "16b701659d7d9f72aade1d695818a645e2f603a6"
 inherit cmake
 
 DEPENDS = "libpng tiff lcms zlib"
