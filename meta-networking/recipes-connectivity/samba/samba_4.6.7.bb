@@ -34,7 +34,7 @@ inherit systemd waf-samba cpan-base perlnative update-rc.d
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
-DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb krb5 libbsd libaio libpam"
+DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libbsd libaio libpam"
 DEPENDS_append_libc-musl = " libtirpc"
 CFLAGS_append_libc-musl = " -I${STAGING_INCDIR}/tirpc"
 LDFLAGS_append_libc-musl = " -ltirpc"
@@ -45,12 +45,18 @@ LSB_linuxstdbase = "lsb"
 INITSCRIPT_NAME = "samba"
 INITSCRIPT_PARAMS = "start 20 3 5 . stop 20 0 1 6 ."
 
-SYSTEMD_PACKAGES = "${PN}-base winbind"
+SYSTEMD_PACKAGES = "${PN}-base ${PN}-ad-dc winbind"
 SYSTEMD_SERVICE_${PN}-base = "nmb.service smb.service"
+SYSTEMD_SERVICE_${PN}-ad-dc = "samba.service"
 SYSTEMD_SERVICE_winbind = "winbind.service"
 
+# There are prerequisite settings to enable ad-dc, so disable the service by default.
+# Reference:
+# https://wiki.samba.org/index.php/Setting_up_Samba_as_an_Active_Directory_Domain_Controller
+SYSTEMD_AUTO_ENABLE_${PN}-ad-dc = "disable"
+
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd zeroconf', d)} \
-                   acl cups ldap \
+                   acl ad-dc cups gnutls ldap \
 "
 
 RDEPENDS_${PN}-base += "${LSB}"
@@ -68,6 +74,15 @@ PACKAGECONFIG[valgrind] = ",--without-valgrind,valgrind,"
 PACKAGECONFIG[lttng] = "--with-lttng, --without-lttng,lttng-ust"
 PACKAGECONFIG[archive] = "--with-libarchive, --without-libarchive, libarchive"
 
+# Building the AD (Active Directory) DC (Domain Controller) requires GnuTLS,
+# And ad-dc doesn't work with mitkrb5 for versions prior to 4.7.0 according to:
+# http://samba.2283325.n4.nabble.com/samba-4-6-6-Unknown-dependency-kdc-in-service-kdc-objlist-td4722096.html
+# So the working combination is:
+# 1) ad-dc: enable, gnutls: enable, mitkrb5: disable
+# 2) ad-dc: disable, gnutls: enable/disable, mitkrb5: enable
+PACKAGECONFIG[ad-dc] = ",--without-ad-dc,,"
+PACKAGECONFIG[gnutls] = "--enable-gnutls,--disable-gnutls,gnutls,"
+PACKAGECONFIG[mitkrb5] = "--with-system-mitkrb5,,krb5,"
 
 SAMBA4_IDMAP_MODULES="idmap_ad,idmap_rid,idmap_adex,idmap_hash,idmap_tdb2"
 SAMBA4_PDB_MODULES="pdb_tdbsam,${@bb.utils.contains('PACKAGECONFIG', 'ldap', 'pdb_ldap,', '', d)}pdb_ads,pdb_smbpasswd,pdb_wbc_sam,pdb_samba4"
@@ -82,12 +97,9 @@ EXTRA_OECONF += "--enable-fhs \
                  --with-modulesdir=${libdir}/samba \
                  --with-lockdir=${localstatedir}/lib/samba \
                  --with-cachedir=${localstatedir}/lib/samba \
-                 --disable-gnutls \
                  --disable-rpath-install \
                  --with-shared-modules=${SAMBA4_MODULES} \
                  --bundled-libraries=${SAMBA4_LIBS} \
-                 --with-system-mitkrb5 \
-                 --without-ad-dc \
                  ${@base_conditional('TARGET_ARCH', 'x86_64', '', '--disable-glusterfs', d)} \
                  --with-cluster-support \
                  --with-profiling-data \
@@ -112,6 +124,10 @@ do_install_append() {
     sed -e 's,\(ExecReload=\).*\(/kill\),\1${base_bindir}\2,' \
         -e 's,/etc/sysconfig/samba,${sysconfdir}/default/samba,' \
         -i ${D}${systemd_system_unitdir}/*.service
+
+    if [ "${@bb.utils.contains('PACKAGECONFIG', 'ad-dc', 'yes', 'no', d)}" = "no" ]; then
+        rm -f ${D}${systemd_system_unitdir}/samba.service
+    fi
 
     install -d ${D}${sysconfdir}/tmpfiles.d
     install -m644 packaging/systemd/samba.conf.tmp ${D}${sysconfdir}/tmpfiles.d/samba.conf
@@ -161,7 +177,7 @@ do_install_append() {
 PACKAGES =+ "${PN}-python ${PN}-pidl \
              ${PN}-dsdb-modules ${PN}-testsuite registry-tools \
              winbind \
-             ${PN}-common ${PN}-base ${PN}-ctdb-tests \
+             ${PN}-common ${PN}-base ${PN}-ad-dc ${PN}-ctdb-tests \
              smbclient"
 
 python samba_populate_packages() {
@@ -196,8 +212,11 @@ FILES_${PN}-base = "${sbindir}/nmbd \
                     ${localstatedir}/nmbd \
                     ${localstatedir}/spool/samba \
                     ${systemd_system_unitdir}/nmb.service \
-                    ${systemd_system_unitdir}/samba.service \
                     ${systemd_system_unitdir}/smb.service"
+
+FILES_${PN}-ad-dc = "${sbindir}/samba \
+                     ${systemd_system_unitdir}/samba.service \
+                    "
 
 FILES_${PN}-ctdb-tests = "${bindir}/ctdb_run_tests \
                           ${bindir}/ctdb_run_cluster_tests \
