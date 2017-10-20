@@ -7,6 +7,7 @@ SRC_URI += "\
     file://0003-bridge-fix-some-build-time-warnings-errno.h.patch \
     file://0004-libbridge-add-missing-include-s-fix-build-against-mu.patch \
     file://0005-build-don-t-ignore-CFLAGS-from-environment.patch \
+    file://0001-libbridge-Modifying-the-AR-to-cross-toolchain.patch \
 "
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=f9d20a453221a1b7e32ae84694da2c37"

@@ -1,0 +1,31 @@
+From 689e24ef05bd1772b2149e4eb48b058ca8361cf4 Mon Sep 17 00:00:00 2001
+From: Li Zhou <li.zhou@windriver.com>
+Date: Thu, 19 Oct 2017 11:34:18 +0800
+Subject: [PATCH 2/2] libbridge: Modifying the AR to cross toolchain
+
+The Makefile uses the host “ar” tool when it should be using the
+ar from the target toolchain.
+
+Upstream-Status: Pending
+
+Signed-off-by: Li Zhou <li.zhou@windriver.com>
+---
+ libbridge/Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libbridge/Makefile.in b/libbridge/Makefile.in
+index 11c0829..59d7355 100644
+--- a/libbridge/Makefile.in
++++ b/libbridge/Makefile.in
+@@ -1,7 +1,7 @@
+ 
+ KERNEL_HEADERS=-I@KERNEL_HEADERS@
+ 
+-AR=ar
++AR?=ar
+ RANLIB=@RANLIB@
+ 
+ CC=@CC@
+-- 
+1.9.1
+
