@@ -47,7 +47,7 @@ INITSCRIPT_PARAMS = "start 20 3 5 . stop 20 0 1 6 ."
 
 SYSTEMD_PACKAGES = "${PN}-base ${PN}-ad-dc winbind"
 SYSTEMD_SERVICE_${PN}-base = "nmb.service smb.service"
-SYSTEMD_SERVICE_${PN}-ad-dc = "samba.service"
+SYSTEMD_SERVICE_${PN}-ad-dc = "${@bb.utils.contains('PACKAGECONFIG', 'ad-dc', 'samba.service', '', d)}"
 SYSTEMD_SERVICE_winbind = "winbind.service"
 
 # There are prerequisite settings to enable ad-dc, so disable the service by default.
@@ -56,7 +56,7 @@ SYSTEMD_SERVICE_winbind = "winbind.service"
 SYSTEMD_AUTO_ENABLE_${PN}-ad-dc = "disable"
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd zeroconf', d)} \
-                   acl ad-dc cups gnutls ldap \
+                   acl cups ldap mitkrb5 \
 "
 
 RDEPENDS_${PN}-base += "${LSB}"
@@ -80,6 +80,11 @@ PACKAGECONFIG[archive] = "--with-libarchive, --without-libarchive, libarchive"
 # So the working combination is:
 # 1) ad-dc: enable, gnutls: enable, mitkrb5: disable
 # 2) ad-dc: disable, gnutls: enable/disable, mitkrb5: enable
+#
+# There is another known issue when mitkrb5 is disabled:
+# embedded_heimdal will be built but will fail for x86 if there is no 32bit libbsd on the host.
+# so ad-dc is disabled and mitkrb5 is enabled by default, someone wants to use ad-dc may need
+# to enable themself and workaround the issue.
 PACKAGECONFIG[ad-dc] = ",--without-ad-dc,,"
 PACKAGECONFIG[gnutls] = "--enable-gnutls,--disable-gnutls,gnutls,"
 PACKAGECONFIG[mitkrb5] = "--with-system-mitkrb5,,krb5,"
