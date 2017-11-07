@@ -22,7 +22,7 @@ SYSTEMD_SERVICE_${PN} = "corosync.service corosync-notifyd.service \
                          ${@bb.utils.contains('PACKAGECONFIG', 'qdevice', 'corosync-qdevice.service', '', d)} \
                          ${@bb.utils.contains('PACKAGECONFIG', 'qnetd', 'corosync-qnetd.service', '', d)} \
 "
-SYSTEMD_AUTO_ENABLE = "enable"
+SYSTEMD_AUTO_ENABLE = "disable"
 
 INITSCRIPT_NAME = "corosync-daemon"
 
