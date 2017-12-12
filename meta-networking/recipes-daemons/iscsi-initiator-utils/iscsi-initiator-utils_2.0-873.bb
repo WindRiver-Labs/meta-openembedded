@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = \
         "file://COPYING;md5=393a5ca445f6965873eca0259a17f833 \
          file://utils/open-isns/COPYING;md5=7fbc338309ac38fefcd64b04bb903e34"
 
-SRC_URI = "http://www.open-iscsi.org/bits/open-iscsi-${PV}.tar.gz \
+SRC_URI = "http://pkgs.fedoraproject.org/repo/pkgs/${BPN}/open-iscsi-${PV}.tar.gz/8b8316d7c9469149a6cc6234478347f7/open-iscsi-${PV}.tar.gz \
            file://iscsi-initiator-utils-use-var-for-config.patch \
            file://iscsi-initiator-utils-dont-use-static.patch \
            file://initd.debian \

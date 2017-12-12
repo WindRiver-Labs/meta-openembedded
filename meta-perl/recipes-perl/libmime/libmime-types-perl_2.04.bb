@@ -11,7 +11,7 @@ SECTION = "libraries"
 LICENSE = "Artistic-1.0|GPLv1+"
 LIC_FILES_CHKSUM = "file://META.yml;beginline=11;endline=11;md5=963ce28228347875ace682de56eef8e8"
 
-SRC_URI = "http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MIME-Types-${PV}.tar.gz \
+SRC_URI = "http://perl.overmeer.net/mimetypes/source/MIME-Types-${PV}.tar.gz \
            file://run-ptest \
           "
 SRC_URI[md5sum] = "e292bbf7756bb4999407f3f660697168"
