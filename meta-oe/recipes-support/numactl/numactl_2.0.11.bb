@@ -10,7 +10,7 @@ inherit autotools-brokensep ptest
 
 LIC_FILES_CHKSUM = "file://README;beginline=19;endline=32;md5=5644cc3851cb2499f6c48e52fe198bd9"
 
-SRC_URI = "ttp://pkgs.fedoraproject.org/repo/pkgs/${BPN}/${BPN}-${PV}.tar.gz/d3bc88b7ddb9f06d60898f4816ae9127/${BPN}-${PV}.tar.gz \
+SRC_URI = "http://pkgs.fedoraproject.org/repo/pkgs/${BPN}/${BPN}-${PV}.tar.gz/d3bc88b7ddb9f06d60898f4816ae9127/${BPN}-${PV}.tar.gz \
     file://fix-null-pointer.patch \
     file://Fix-the-test-output-format.patch \
     file://Makefile \
