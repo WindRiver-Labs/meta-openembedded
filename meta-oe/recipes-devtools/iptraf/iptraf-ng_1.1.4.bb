@@ -24,7 +24,7 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e2b3850593b899b1a17594ed4cc4c731"
 DEPENDS = "ncurses"
 
-SRC_URI = "http://pkgs.fedoraproject.org/repo/pkgs/iptraf-ng/iptraf-ng-1.1.4.tar.gz/e0f8df3b7baf2b5106709abc4f8c029a/${BP}.tar.gz \
+SRC_URI = "http://src.fedoraproject.org/repo/pkgs/iptraf-ng/iptraf-ng-1.1.4.tar.gz/e0f8df3b7baf2b5106709abc4f8c029a/${BP}.tar.gz \
            file://ncurses-config.patch \
            file://0001-Fix-printd-formatting-strings.patch \
            "

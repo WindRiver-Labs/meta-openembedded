@@ -11,7 +11,7 @@ REQUIRED_DISTRO_FEATURES = "x11"
 RDEPENDS_${PN} += "iso-codes xkbcomp"
 
 SRC_URI = " \
-    http://pkgs.fedoraproject.org/repo/pkgs/${BPN}/${BPN}-${PV}.tar.bz2/13af74dcb6011ecedf1e3ed122bd31fa/${BPN}-${PV}.tar.bz2 \
+    http://src.fedoraproject.org/repo/pkgs/${BPN}/${BPN}-${PV}.tar.bz2/13af74dcb6011ecedf1e3ed122bd31fa/${BPN}-${PV}.tar.bz2 \
     file://fix-do_installe-failure.patch \
 "
 SRC_URI[md5sum] = "13af74dcb6011ecedf1e3ed122bd31fa"
