@@ -7,7 +7,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=a981379bd0f1c362f8d1d21515e5b30b"
 SRC_URI = "http://dovecot.org/releases/2.2/dovecot-${PV}.tar.gz \
            file://0001-configure.ac-convert-AC_TRY_RUN-to-AC_TRY_LINK-state.patch \
            file://dovecot.service \
-           file://dovecot.socket"
+           file://dovecot.socket \
+           file://0001-doveadm-Fix-parallel-build.patch"
 
 SRC_URI[md5sum] = "8f62ea76489c47c369cbbe0b19818448"
 SRC_URI[sha256sum] = "d8d9f32c846397f7c22749a84c5cf6f59c55ff7ded3dc9f07749a255182f9667"
