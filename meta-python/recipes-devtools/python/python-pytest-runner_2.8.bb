@@ -7,8 +7,12 @@ SRC_URI[sha256sum] = "1ec44deddaa551f85fd563c40a4c483a2609aca1f284a95399566a74d0
 PYPI_PACKAGE_HASH = "466cff61a9e0d513222afa3529bdb565a465812b7e50b218a5afd705f46b258c"
 
 DEPENDS += " \
-    python-setuptools-scm"
+    python-setuptools-scm-native"
 
-RDEPENDS_${PN} = "python-py python-setuptools python-argparse python-debugger python-json"
+RDEPENDS_${PN} = "python-py python-setuptools"
+
+RDEPENDS_${PN}_append_class-target = " python-debugger python-argparse python-json"
 
 inherit pypi setuptools
+
+BBCLASSEXTEND = "native"

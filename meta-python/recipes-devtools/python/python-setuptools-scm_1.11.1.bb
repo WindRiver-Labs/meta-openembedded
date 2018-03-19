@@ -13,6 +13,8 @@ SRC_URI[sha256sum] = "8c45f738a23410c5276b0ed9294af607f491e4260589f1eb90df8312e2
 
 S = "${WORKDIR}/${SRCNAME}-${PV}"
 
-RDEPENDS_${PN} = "python-py python-setuptools python-argparse python-debugger python-json"
+RDEPENDS_${PN} = "python-py python-setuptools"
 
+RDEPENDS_${PN}_append_class-target = " python-debugger python-argparse python-json"
 
+BBCLASSEXTEND = "native"
