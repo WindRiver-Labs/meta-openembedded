@@ -13,7 +13,7 @@ LICENSE = "GPLv2 & LGPLv2+"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=eb723b61539feef013de476e68b5c50a"
 DEPENDS = "openssl-native openssl libidn libtool libpcap libtalloc"
 
-SRC_URI = "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-${PV}.tar.bz2 \
+SRC_URI = "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-${PV}.tar.bz2 \
     file://freeradius \
     file://volatiles.58_radiusd \
     file://freeradius-enble-user-in-conf.patch \
