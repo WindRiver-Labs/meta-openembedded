@@ -47,6 +47,7 @@ EXTRA_OECONF = "--enable-mbstring \
                 --enable-wddx \
                 --enable-fpm \
                 --enable-zip \
+                --with-valgrind=/dev/null \
                 --with-libdir=${baselib} \
                 --with-gettext=${STAGING_LIBDIR}/.. \
                 --with-zlib=${STAGING_LIBDIR}/.. \
