@@ -9,7 +9,7 @@ DEPENDS = "ndctl"
 # Required to have the fts.h header for musl
 DEPENDS_append_libc-musl = " fts"
 
-SRC_URI = "https://github.com/pmem/${BPN}/archive/${PV}.tar.gz \
+SRC_URI = "https://github.com/pmem/${BPN}/archive/${PV}.tar.gz;downloadfilename=${BPN}-${PV}.tar.gz \
            file://0001-jemalloc-jemalloc.cfg-Specify-the-host-when-building.patch \
            file://0002-Makefile-Don-t-install-the-docs.patch \
            file://0003-Makefile-Don-t-build-the-examples.patch \
