@@ -34,25 +34,13 @@ EXTRA_OEMAKE = "HOST_SYS='${HOST_SYS}' EXTRA_CFLAGS='${SELECTED_OPTIMIZATION}' L
 # Fix the missing fts libs when using musl
 EXTRA_OEMAKE_append_libc-musl = " EXTRA_LIBS='-lfts'"
 
+FILES_${PN} = "/usr/etc"
+
 do_install() {
-	oe_runmake PREFIX=${prefix} DESTDIR=${D} install
-
-	# Copy these into the standard directories
-	install -d ${D}${bindir}/
-	mv ${D}/usr/local/bin/pmempool ${D}${bindir}/
-	mv ${D}/usr/local/bin/daxio ${D}${bindir}/
-
-	install -d ${D}${libdir}
-	mv ${D}/usr/local/lib/*so* ${D}${libdir}/
-
-	install -d ${D}${libdir}/pkgconfig
-	mv ${D}/usr/local/lib/pkgconfig/*.pc ${D}${libdir}/pkgconfig/
-
-	install -d ${D}${includedir}
-	mv ${D}/usr/local/include/* ${D}${includedir}/
+	oe_runmake prefix=${prefix} DESTDIR=${D} install
 
 	# Remove uneeded files
-	rm -rf ${D}/usr/local/
+	rm -rf ${D}/usr/lib64/pmdk_debug
 }
 
 # Include these by default otherwise the SDK is not very useful
