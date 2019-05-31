@@ -35,6 +35,9 @@ EXTRA_OECMAKE = "\
     -DWITH_TESTS=OFF \
     -DWITH_TOOLS=OFF \
 "
+do_compile_prepend() {
+    sed -i 's/\(set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wno-error=shadow\)/\1 -Wno-error=deprecated-copy -Wno-error=pessimizing-move/' ${S}/CMakeLists.txt
+}
 
 do_install_append() {
     # fix for qa check buildpaths
