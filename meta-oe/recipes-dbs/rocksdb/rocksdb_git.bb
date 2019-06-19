@@ -15,6 +15,7 @@ SRC_URI = "git://github.com/facebook/${BPN}.git;branch=${SRCBRANCH} \
            file://0001-Disable-Wshadow-and-do-not-mark-default-copy-constru.patch \
            file://0001-utilities-Fix-build-failure-with-Werror-maybe-uninit.patch \
            file://0001-fix-Issue-5303.patch \
+           file://0001-db-write_thread.cc-Initialize-state.patch \
           "
 
 S = "${WORKDIR}/git"
