@@ -34,6 +34,18 @@ SSTATE_SCAN_FILES += "build-defs.h"
 
 PHP_LIBDIR = "${libdir}/php${PHP_MAJOR_VERSION}"
 
+# {standard input}: Assembler messages:
+# {standard input}:81282: Error: branch out of range
+DEBUG_OPTIMIZATION_remove_mips = " -Og"
+DEBUG_OPTIMIZATION_append_mips = " -O"
+BUILD_OPTIMIZATION_remove_mips = " -Og"
+BUILD_OPTIMIZATION_append_mips = " -O"
+
+DEBUG_OPTIMIZATION_remove_mipsel = " -Og"
+DEBUG_OPTIMIZATION_append_mipsel = " -O"
+BUILD_OPTIMIZATION_remove_mipsel = " -Og"
+BUILD_OPTIMIZATION_append_mipsel = " -O"
+
 # Common EXTRA_OECONF
 COMMON_EXTRA_OECONF = "--enable-sockets \
                        --enable-pcntl \
