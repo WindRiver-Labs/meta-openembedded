@@ -27,6 +27,8 @@ inherit ${@bb.utils.contains('PACKAGECONFIG', 'qt5', 'cmake_qt5', '', d)}
 
 SECURITY_CFLAGS = "${SECURITY_NO_PIE_CFLAGS}"
 
+CXXFLAGS_append_armv5 = " -fpermissive"
+
 EXTRA_OECMAKE += " \
     -DENABLE_CMS=lcms2 \
     -DENABLE_UNSTABLE_API_ABI_HEADERS=ON \
