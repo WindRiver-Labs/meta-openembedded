@@ -18,7 +18,7 @@ DEPENDS = " \
     curl \
 "
 
-inherit gnomebase gettext update-rc.d systemd vala gobject-introspection gtk-doc update-alternatives upstream-version-is-even
+inherit gnomebase gettext update-rc.d systemd vala gobject-introspection gtk-doc upstream-version-is-even
 
 SRC_URI = " \
     ${GNOME_MIRROR}/NetworkManager/${@gnome_verdir("${PV}")}/NetworkManager-${PV}.tar.xz \
@@ -161,20 +161,12 @@ FILES_${PN}-nmtui-doc = " \
 INITSCRIPT_NAME = "network-manager"
 SYSTEMD_SERVICE_${PN} = "${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'NetworkManager.service NetworkManager-dispatcher.service', '', d)}"
 
-ALTERNATIVE_PRIORITY = "100"
-ALTERNATIVE_${PN} = "${@bb.utils.contains('DISTRO_FEATURES','systemd','resolv-conf','',d)}"
-ALTERNATIVE_TARGET[resolv-conf] = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${sysconfdir}/resolv-conf.NetworkManager','',d)}"
-ALTERNATIVE_LINK_NAME[resolv-conf] = "${@bb.utils.contains('DISTRO_FEATURES','systemd','${sysconfdir}/resolv.conf','',d)}"
-
 do_install_append() {
     install -Dm 0755 ${WORKDIR}/${BPN}.initd ${D}${sysconfdir}/init.d/network-manager
 
     rm -rf ${D}/run ${D}${localstatedir}/run
 
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-        # For read-only filesystem, do not create links during bootup
-        ln -sf ../run/NetworkManager/resolv.conf ${D}${sysconfdir}/resolv-conf.NetworkManager
-
         # systemd v210 and newer do not need this rule file
         rm ${D}/${nonarch_base_libdir}/udev/rules.d/84-nm-drivers.rules
     fi
