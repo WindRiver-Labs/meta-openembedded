@@ -22,6 +22,7 @@ RDEPENDS_${PN} += " \
     ${PYTHON_PN}-strict-rfc3339 \
     ${PYTHON_PN}-unittest \
     ${PYTHON_PN}-setuptools-scm \
+    ${PYTHON_PN}-zipp \
 "
 
 BBCLASSEXTEND = "native nativesdk"
