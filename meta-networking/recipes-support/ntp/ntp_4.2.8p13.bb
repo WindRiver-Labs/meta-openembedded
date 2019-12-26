@@ -66,11 +66,17 @@ PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
 
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d
-    install -m 644 ${WORKDIR}/ntp.conf ${D}${sysconfdir}
     install -m 755 ${WORKDIR}/ntpd ${D}${sysconfdir}/init.d
     install -d ${D}${bindir}
     install -m 755 ${WORKDIR}/ntpdate ${D}${bindir}/ntpdate-sync
 
+    if ${@bb.utils.contains('EXTRA_IMAGE_FEATURES','read-only-rootfs','true','false',d)}; then
+        install -d ${D}${sysconfdir}/ntp
+        install -m 644 ${WORKDIR}/ntp.conf ${D}${sysconfdir}/ntp
+        ln -s ${sysconfdir}/ntp/ntp.conf ${D}${sysconfdir}/ntp.conf
+    else
+        install -m 644 ${WORKDIR}/ntp.conf ${D}${sysconfdir}
+    fi
     install -m 755 -d ${D}${NTP_USER_HOME}
     chown ntp:ntp ${D}${NTP_USER_HOME}
 
@@ -143,6 +149,7 @@ FILES_${PN} = "${sbindir}/ntpd.ntp ${sysconfdir}/ntp.conf ${sysconfdir}/init.d/n
     ${NTP_USER_HOME} \
     ${systemd_unitdir}/ntp-units.d/60-ntpd.list \
     ${sysconfdir}/dhcp/dhclient.d/ntp.sh \
+    ${@bb.utils.contains('EXTRA_IMAGE_FEATURES','read-only-rootfs','${sysconfdir}/ntp','',d)} \
 "
 FILES_${PN}-tickadj = "${sbindir}/tickadj"
 FILES_${PN}-utils = "${sbindir} ${datadir}/ntp/lib"
