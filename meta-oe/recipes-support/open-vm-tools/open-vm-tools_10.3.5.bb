@@ -39,6 +39,7 @@ SRC_URI = "git://github.com/vmware/open-vm-tools.git;protocol=https \
     file://0012-Use-off64_t-instead-of-__off64_t.patch;patchdir=.. \
     file://0013-misc-Do-not-print-NULL-string-into-logs.patch;patchdir=.. \
     file://0014-Fix-new-warnings-from-gcc9.patch;patchdir=.. \
+    file://0001-hgfsmounter-Makefile.am-support-usrmerge.patch;patchdir=.. \
 "
 # stable-10.3.5
 SRCREV = "f2ff192717375b95a6b7e278fb47dbb3d3bc56d1"
@@ -57,7 +58,8 @@ SYSTEMD_SERVICE_${PN} = "vmtoolsd.service"
 EXTRA_OECONF = "--without-icu --disable-multimon --disable-docs \
          --disable-tests --without-gtkmm --without-xerces --without-pam \
          --disable-grabbitmqproxy --disable-vgauth --disable-deploypkg \
-         --without-root-privileges --without-kernel-modules"
+         --without-root-privileges --without-kernel-modules \
+         --with-udev-rules-dir=${nonarch_base_libdir}/udev/rules.d"
 
 NO_X11_FLAGS = "--without-x --without-gtk2 --without-gtk3"
 X11_DEPENDS = "libxext libxi libxrender libxrandr libxtst gtk+ gdk-pixbuf"
@@ -80,7 +82,10 @@ CONFFILES_${PN} += "${sysconfdir}/vmware-tools/tools.conf"
 RDEPENDS_${PN} = "util-linux libdnet fuse"
 
 do_install_append() {
-    ln -sf ${sbindir}/mount.vmhgfs ${D}/sbin/mount.vmhgfs
+    if ! ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','true','false',d)}; then
+        install -d ${D}/sbin
+        ln -sf ${sbindir}/mount.vmhgfs ${D}/sbin/mount.vmhgfs
+    fi
     install -d ${D}${sysconfdir}/vmware-tools
     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
         install -d ${D}${systemd_unitdir}/system
