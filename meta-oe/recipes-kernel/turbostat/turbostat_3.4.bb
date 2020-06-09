@@ -21,7 +21,7 @@ SRC_URI += "\
             "
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-DEPENDS = "virtual/kernel"
+DEPENDS = "virtual/kernel libcap"
 
 # This looks in S, so we better make sure there's
 # something in the directory.
