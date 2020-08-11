@@ -7,6 +7,7 @@ SECTION = "System Environment/Base"
 
 SRC_URI = "git://git.kernel.org/pub/scm/utils/cpu/mce/mcelog.git;protocol=http; \
     file://run-ptest \
+    file://0001-mcelog-Add-support-for-Icelake-server-Icelake-D-and-.patch \
 "
 
 SRCREV = "e53631f84a181be371c08e0b961180bff77fd2ab"
