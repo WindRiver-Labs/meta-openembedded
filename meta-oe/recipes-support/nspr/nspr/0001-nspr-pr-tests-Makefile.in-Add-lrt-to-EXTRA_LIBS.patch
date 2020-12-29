@@ -1,0 +1,47 @@
+From 4441e9c15684623adb3d5cbd6c2f27c1f3d212ac Mon Sep 17 00:00:00 2001
+From: Robert Yang <liezhi.yang@windriver.com>
+Date: Tue, 29 Dec 2020 03:57:07 +0000
+Subject: [PATCH] nspr/pr/tests/Makefile.in: Add -lrt to EXTRA_LIBS
+
+Fixed when built with nativesdk-gcc from buildtools-extended-tarball:
+$ bitbake nspr-native
+
+gcc   abstract.o -Xlinker -L../../dist/lib -lplc4 -L../../dist/lib -lnspr4 -lpthread -o abstract
+/path/to/x86_64-wrlinuxsdk-linux/bin/ld: 
+/lib/x86_64-linux-gnu/librt.so.1: undefined reference to `__clock_getcpuclockid@GLIBC_PRIVATE'
+/path/to/x86_64-wrlinuxsdk-linux/bin/ld: 
+/lib/x86_64-linux-gnu/librt.so.1: undefined reference to `__clock_nanosleep@GLIBC_PRIVATE'
+/path/to/x86_64-wrlinuxsdk-linux/bin/ld: 
+/lib/x86_64-linux-gnu/librt.so.1: undefined reference to `__clock_settime@GLIBC_PRIVATE'
+/path/to/x86_64-wrlinuxsdk-linux/bin/ld: 
+/lib/x86_64-linux-gnu/librt.so.1: undefined reference to `__clock_getres@GLIBC_PRIVATE'
+
+Referred to:
+https://github.com/linux-test-project/ltp/issues/255
+
+There should be a bug hidden in nativesdk-gcc or other toolchains, but it's
+very had to figure it out. The quick workaround is using "-lpthread -lrt"
+
+Upstream-Status: Inappropriate [OE specific]
+
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ nspr/pr/tests/Makefile.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pr/tests/Makefile.in b/pr/tests/Makefile.in
+index 2ccb992..45270e9 100644
+--- a/pr/tests/Makefile.in
++++ b/pr/tests/Makefile.in
+@@ -274,7 +274,7 @@ endif # SunOS
+ ifeq (,$(filter-out Linux GNU GNU_%,$(OS_ARCH)))
+     LDOPTS += -Xlinker
+     ifeq ($(USE_PTHREADS),1)
+-        EXTRA_LIBS = -lpthread
++        EXTRA_LIBS = -lpthread -lrt
+     endif
+ endif
+ 
+-- 
+2.29.2
+
