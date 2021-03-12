@@ -17,6 +17,7 @@ SRC_URI = "git://github.com/rhinstaller/pykickstart.git;protocol=https;branch=ma
            file://0002-pykickstart-parser.py-add-lock-for-readKickstart-and.patch \
            file://0003-comment-out-sections-shutdown-and-environment-in-gen.patch \
            file://0004-load.py-retry-to-invoke-request-with-timeout.patch \
+           file://pykickstart-enable-root-ssh-login.patch \
            "
 SRCREV = "c56a5fbdd4079b187b21787f072ccc83dc09c28c"
 
