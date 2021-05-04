@@ -35,6 +35,9 @@ SRC_URI = "http://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${VERSIO
            file://0001-Bug-1737470-Ensure-DER-encoded-signatures-are-within.patch \
            file://0001-Bug-1735028-check-for-missing-signedData-field-r-kee.patch \
            "
+
+SRC_URI_append_marvell-cn96xx = "file://0001-freebl-change-armv8-a-crypto-to-armv8.2-a-crypto.patch \
+                                 "
 SRC_URI[sha256sum] = "d3175427172e9c3a6f1ebc74452cb791590f28191c6a1a443dbc0d87c9df1126"
 
 UPSTREAM_CHECK_URI = "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/NSS_Releases"
