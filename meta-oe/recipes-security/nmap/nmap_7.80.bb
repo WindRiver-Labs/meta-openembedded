@@ -50,9 +50,12 @@ do_configure() {
 }
 
 do_install_append() {
-    if [ -f "${D}${bindir}/ndiff" ]; then
-       sed -i 's@^#!.*$@#!/usr/bin/env python3@g'   ${D}${bindir}/ndiff
-    fi
+    for i in ndiff uninstall_ndiff; do
+        f="${D}${bindir}/$i"
+        if [ -f $f ]; then
+            sed -i 's@^#!.*$@#!/usr/bin/env python3@g' $f
+        fi
+    done
 }
 
 FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR} ${datadir}/ncat"
