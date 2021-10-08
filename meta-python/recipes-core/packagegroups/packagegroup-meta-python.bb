@@ -269,6 +269,7 @@ RDEPENDS_packagegroup-meta-python3 = "\
     python3-ply \
     python3-pocketsphinx \
     python3-polyline \
+    python3-posix-ipc \
     python3-prctl \
     python3-precise-runner \
     python3-pretend \
