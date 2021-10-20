@@ -1,0 +1,59 @@
+From 809013d71a2fc8f867b252e5e110f6ecfdb602f5 Mon Sep 17 00:00:00 2001
+From: Beniamino Galvani <bgalvani@redhat.com>
+Date: Mon, 8 Jul 2019 14:58:05 +0200
+Subject: [PATCH 2/4] build: add missing dependency for
+ shared/systemd/src/shared
+
+ In file included from ./shared/systemd/sd-adapt-shared/nm-sd-adapt-shared.h:21,
+                  from shared/systemd/src/shared/dns-domain.c:3:
+ ./shared/nm-default.h:106:10: fatal error: config-extra.h: No such file or directory
+  #include "config-extra.h"
+          ^~~~~~~~~~~~~~~~
+ compilation terminated.
+ make[1]: *** [Makefile:12933: shared/systemd/src/shared/libnm_systemd_shared_la-dns-domain.lo] Error 1
+
+Fixes: 7d3098ff90ec ('systemd: add dns-domain utils to systemd static library')
+
+Upstream-status:
+[https://cgit.freedesktop.org/NetworkManager/NetworkManager/commit/?id=deba9c4b86e49ff30e568818a72a2f170618d813]
+
+Signed-off-by: Liu Haitao <haitao.liu@windriver.com>
+---
+ Makefile.am | 21 +++++++++++----------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index ba5be8e..8d0e422 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -113,16 +113,17 @@ include config-extra.h.mk
+ 
+ DISTCLEANFILES += config-extra.h
+ 
+-$(libnm_core_lib_h_pub_mkenums):    config-extra.h
+-libnm-core/.dirstamp:               config-extra.h
+-shared/.dirstamp:                   config-extra.h
+-shared/nm-glib-aux/.dirstamp:       config-extra.h
+-shared/nm-std-aux/.dirstamp:        config-extra.h
+-shared/nm-udev-aux/.dirstamp:       config-extra.h
+-shared/systemd/.dirstamp:           config-extra.h
+-shared/systemd/src/basic/.dirstamp: config-extra.h
+-src/dhcp/.dirstamp:                 config-extra.h
+- 
++$(libnm_core_lib_h_pub_mkenums):     config-extra.h
++libnm-core/.dirstamp:                config-extra.h
++shared/.dirstamp:                    config-extra.h
++shared/nm-glib-aux/.dirstamp:        config-extra.h
++shared/nm-std-aux/.dirstamp:         config-extra.h
++shared/nm-udev-aux/.dirstamp:        config-extra.h
++shared/systemd/.dirstamp:            config-extra.h
++shared/systemd/src/basic/.dirstamp:  config-extra.h
++shared/systemd/src/shared/.dirstamp: config-extra.h
++src/dhcp/.dirstamp:                  config-extra.h
++
+ 
+ ###############################################################################
+ 
+-- 
+2.23.0
+
