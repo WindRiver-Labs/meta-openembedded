@@ -20,6 +20,8 @@ DEPENDS += " \
         ${PYTHON_PN}-pip \
         "
 
+LDSHARED="${CCLD} -shared -lrt"
+
 # RDEPENDS:default:
 RDEPENDS:${PN} += " \
         "
