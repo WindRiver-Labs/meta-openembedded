@@ -102,6 +102,7 @@ RDEPENDS_packagegroup-meta-python3 = "\
     python3-flask-sijax python3-cryptography python3-twisted python3-netaddr python3-pycparser \
     python3-flask-uploads python3-pysocks python3-cffi python3-editor python3-ptyprocess \
     python3-pyopenssl python3-ordered-set python3-simplejson python3-py \
+    python3-posix-ipc \
     ${@bb.utils.contains("DISTRO_FEATURES", "systemd", "python3-systemd", "", d)} \
 "
 
