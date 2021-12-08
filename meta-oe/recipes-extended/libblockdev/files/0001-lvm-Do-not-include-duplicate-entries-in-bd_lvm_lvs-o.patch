@@ -29,7 +29,7 @@ index 2be1dbd..acd5b84 100644
 +                /* ignore duplicate entries in lvs output, these are caused by multi segments LVs */
 +                for (gsize i = 0; i < lvs->len; i++) {
 +                    if (g_strcmp0 (((BDLVMLVdata *) g_ptr_array_index (lvs, i))->lv_name, lvdata->lv_name) == 0) {
-+                        g_warning("Duplicate LV entry for '%s' found in lvs output",
++                        g_debug("Duplicate LV entry for '%s' found in lvs output",
 +                                  lvdata->lv_name);
 +                        bd_lvm_lvdata_free (lvdata);
 +                        lvdata = NULL;
