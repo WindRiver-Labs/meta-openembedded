@@ -64,3 +64,5 @@ do_install_append() {
 do_install_ptest () {
     oe_runmake -C ${S}/examples DESTDIR=${D}${PTEST_PATH} ${PTEST_EXTRA_ARGS} install-ptest
 }
+
+BBCLASSEXTEND = "native"
