@@ -38,4 +38,8 @@ do_install_ptest() {
 RDEPENDS_${PN} += "bash"
 RDEPENDS_${PN}-ptest = "util-linux-getopt bash"
 
+inherit update-alternatives
+ALTERNATIVE_${PN} = "installkernel"
+ALTERNATIVE_LINK_NAME[installkernel] = "${sbindir}/installkernel"
+
 COMPATIBLE_HOST = '(x86_64.*|i.86.*)-(linux|freebsd.*)'
