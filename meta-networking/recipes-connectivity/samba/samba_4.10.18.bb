@@ -34,6 +34,11 @@ SRC_URI = "${SAMBA_MIRROR}/stable/samba-${PV}.tar.gz \
            file://CVE-2021-20277.patch \
            file://CVE-2021-20254.patch \
            file://CVE-2021-3671.patch \
+           file://CVE-2020-25717.patch \
+           file://CVE-2020-25722.patch \
+           file://CVE-2016-2124.patch \
+           file://CVE-2021-3738.patch \
+           file://CVE-2021-23192.patch \
            "
 SRC_URI_append_libc-musl = " \
            file://samba-pam.patch \
