@@ -1,0 +1,38 @@
+From 34e09cab58141ae9c008739adccb525878ba5ae7 Mon Sep 17 00:00:00 2001
+From: Ovidiu Panait <ovidiu.panait@windriver.com>
+Date: Mon, 14 Feb 2022 15:09:23 +0000
+Subject: [PATCH] build: add config-extra.h dependency for
+ shared/nm-utils/tests/test-shared-general
+
+This fixes the following intermittent build failure:
+In file included from ../NetworkManager-1.18.2/shared/nm-utils/tests/test-shared-general.c:22:                                                                          ../NetworkManager-1.18.2/shared/nm-default.h:120:10: fatal error: config-extra.h: No such file or directory
+  120 | #include "config-extra.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+
+The upstream commit needed to get rid of this issue *seems* to be 44c5331e29d8
+("shared: move "shared/nm-utils/tests/test-shared-general" to
+ "shared/nm-glib-aux/tests""). However, a lot dependencies are needed to bring
+the necessary context for the patch to apply. To keep things simple, we go with
+a minimally intrusive custom fix instead.
+
+Signed-off-by: Ovidiu Panait <ovidiu.panait@windriver.com>
+---
+ Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile.am b/Makefile.am
+index bebd8b3..bf3d441 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -126,6 +126,7 @@ shared/systemd/.dirstamp:            config-extra.h
+ shared/systemd/src/basic/.dirstamp:  config-extra.h
+ shared/systemd/src/shared/.dirstamp: config-extra.h
+ src/dhcp/.dirstamp:                  config-extra.h
++shared/nm-utils/tests/.dirstamp:     config-extra.h
+ 
+ 
+ ###############################################################################
+-- 
+2.23.0
+

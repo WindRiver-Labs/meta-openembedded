@@ -30,6 +30,7 @@ SRC_URI = " \
     file://0002-build-add-missing-dependency-for-shared-systemd-src-.patch \
     file://0003-build-regenerate-config-extra.h-if-configure-was-re-.patch \
     file://0004-build-add-missing-dependency-for-config-extra.h-in-M.patch \
+    file://0005-build-add-config-extra.h-dependency-for-shared-nm-ut.patch \
 "
 SRC_URI_append_libc-musl = " \
     file://musl/0001-Fix-build-with-musl-systemd-specific.patch \
