@@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://tcpslice.c;endline=20;md5=99519e2e5234d1662a4ce16baa6
 SRC_URI = "ftp://ftp.ee.lbl.gov/${BP}.tar.gz \
            file://tcpslice-1.2a3-time.patch \
            file://tcpslice-CVS.20010207-bpf.patch \
+           file://CVE-2021-41043.patch \
            "
 SRC_URI[md5sum] = "e329cbeb7e589f132d92c3447c477190"
 SRC_URI[sha256sum] = "4096e8debc898cfaa16b5306f1c42f8d18b19e30e60da8d4deb781c8f684c840"
