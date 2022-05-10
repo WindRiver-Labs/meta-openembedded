@@ -1,18 +1,17 @@
 SUMMARY = "Web-based MySQL administration interface"
 HOMEPAGE = "http://www.phpmyadmin.net"
 # Main code is GPLv2, vendor/tecnickcom/tcpdf is under LGPLv3, js/jquery is under MIT
-LICENSE = "GPLv2 & LGPLv3 & MIT"
+LICENSE = "GPL-2.0-only & LGPL-3.0-only & MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
                     file://vendor/tecnickcom/tcpdf/LICENSE.TXT;md5=dd6470bbcd3436ca317f82d34abaf688 \
-                    file://js/vendor/jquery/MIT-LICENSE.txt;md5=75308107741f7dcdc39127209c7e3fc8 \
+                    file://js/vendor/jquery/MIT-LICENSE.txt;md5=de877aa6d744cc160ff41c26a8e4811f \
 "
 
 SRC_URI = "https://files.phpmyadmin.net/phpMyAdmin/${PV}/phpMyAdmin-${PV}-all-languages.tar.xz \
            file://apache.conf \
 "
 
-SRC_URI[md5sum] = "4587343e706c5434adf91c396b418731"
-SRC_URI[sha256sum] = "aa8ccf357f672012384df34e1c2bc70147476761c8458a0dad6233497e142c68"
+SRC_URI[sha256sum] = "c562feddc0f8ff5e69629113f273a0d024a65fb928c48e89ce614744d478296f"
 
 UPSTREAM_CHECK_URI = "https://www.phpmyadmin.net/downloads/"
 UPSTREAM_CHECK_REGEX = "phpMyAdmin-(?P<pver>\d+(\.\d+)+)-all-languages.tar.xz"
@@ -35,7 +34,7 @@ do_install() {
     rm -f ${D}${datadir}/phpmyadmin/libraries/transformations/*.sh
 }
 
-FILES_${PN} = "${datadir}/${BPN} \
+FILES:${PN} = "${datadir}/${BPN} \
                ${sysconfdir}/apache2/conf.d"
 
-RDEPENDS_${PN} += "bash php-cli"
+RDEPENDS:${PN} += "bash php-cli"
